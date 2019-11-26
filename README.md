@@ -17,6 +17,10 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 ```
+#### Via Curl
+```
+curl -Lks https://gist.github.com/mihranmashhud/e5ac2fef721b560addaaaf167c2b6362 | /bin/bash
+```
 
 ### Or Step By Step:
 Clone the repo:
