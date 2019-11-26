@@ -46,3 +46,7 @@ Untrack files that aren't part of dotfiles:
 ```
 config config --local status.showUntrackedFiles no
 ```
+
+## Notes:
++ Don't forget to do PlugInstall when in vim to get them plugins
++ The plugin vim-haskell requires the Haskell IDE Engine so go install that
