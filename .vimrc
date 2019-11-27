@@ -76,6 +76,45 @@ Plug 'connorholyday/vim-snazzy'
 
 Plug 'itchyny/lightline.vim'
 
+Plug 'w0rp/ale'
+
+Plug 'neovimhaskell/haskell-vim'
+
+Plug 'alx741/vim-stylishask'
+
 call plug#end()
 
 filetype plugin indent on
+
+" Coc -------------------------------------------------------------------
+
+nnoremap <leader> F :call CocAction('format')<CR>
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
+

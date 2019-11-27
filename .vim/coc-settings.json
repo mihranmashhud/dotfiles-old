@@ -6,7 +6,6 @@
       "filetypes": ["hs", "lhs", "haskell"],
       "initializationOptions": {
         "languageServerHaskell": {
-          "hlintOn": true
         }
       }
     }
