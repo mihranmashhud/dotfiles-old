@@ -50,3 +50,10 @@ config config --local status.showUntrackedFiles no
 ## Notes:
 + Don't forget to do PlugInstall when in vim to get them plugins
 + The plugin vim-haskell requires the Haskell IDE Engine so go install that
+```
+sudo apt install libicu-dev libtinfo-dev libgmp-dev haskell-stack
+git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules
+cd haskell-ide-engine
+stack upgrade
+stack install.hs build
+```
