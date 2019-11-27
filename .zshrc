@@ -58,14 +58,14 @@ ZSH_THEME="pi"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+export ZSH_CUSTOM="$HOME/.config/zsh/custom"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting git zsh-nvm wd catimg command-not-found compleat debian fasd history jsontools meteor npm perms pip sudo vscode web-search zsh-256color npm-run)
+plugins=(zsh-syntax-highlighting git zsh-nvm wd catimg command-not-found compleat debian fasd history jsontools meteor npm perms pip sudo vscode web-search zsh-256color zsh-better-npm-completion)
 
 source $ZSH/oh-my-zsh.sh
 
