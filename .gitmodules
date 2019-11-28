@@ -1,15 +1,15 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "/home/mihranmashhud/.config/zsh/custom/plugins/zsh-nvm"]
-	path = /home/mihranmashhud/.config/zsh/custom/plugins/zsh-nvm
-	url = https://github.com/lukechilds/zsh-nvm
-[submodule "/home/mihranmashhud/.config/zsh/custom/plugins/zsh-better-npm-completion"]
-	path = /home/mihranmashhud/.config/zsh/custom/plugins/zsh-better-npm-completion
-	url = https://github.com/lukechilds/zsh-better-npm-completion
 [submodule ".config/zsh/custom/plugins/zsh-256color"]
 	path = .config/zsh/custom/plugins/zsh-256color
 	url = https://github.com/chrissicool/zsh-256color
 [submodule ".config/zsh/custom/plugins/zsh-syntax-highlighting"]
 	path = .config/zsh/custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule ".config/zsh/custom/plugins/zsh-better-npm-completion"]
+	path = .config/zsh/custom/plugins/zsh-better-npm-completion
+	url = https://github.com/lukechilds/zsh-better-npm-completion
+[submodule ".config/zsh/custom/plugins/zsh-nvm"]
+	path = .config/zsh/custom/plugins/zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm
