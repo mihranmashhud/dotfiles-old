@@ -82,6 +82,8 @@ Plug 'neovimhaskell/haskell-vim'
 
 Plug 'alx741/vim-stylishask'
 
+Plug 'jpalardy/vim-slime'
+
 call plug#end()
 
 filetype plugin indent on
