@@ -90,6 +90,8 @@ Plug 'conornewton/vim-pandoc-markdown-preview'
 
 Plug 'lingnand/pandoc-preview.vim'
 
+Plug 'jpalardy/vim-slime'
+
 call plug#end()
 
 filetype plugin indent on
