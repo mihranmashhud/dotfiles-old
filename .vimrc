@@ -82,6 +82,14 @@ Plug 'neovimhaskell/haskell-vim'
 
 Plug 'alx741/vim-stylishask'
 
+Plug 'JamshedVesuna/vim-markdown-preview'
+
+Plug 'skywind3000/asyncrun.vim'
+
+Plug 'conornewton/vim-pandoc-markdown-preview'
+
+Plug 'lingnand/pandoc-preview.vim'
+
 call plug#end()
 
 filetype plugin indent on
@@ -117,4 +125,9 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
+
+" Markdown
+let vim_markdown_preview_pandoc=1
+let g:pandoc_preview_pdf_cmd = "zathura" 
+let g:md_pdf_viewer="zathura"
 
