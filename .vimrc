@@ -116,11 +116,15 @@ Plug 'connorholyday/vim-snazzy'
 
 Plug 'itchyny/lightline.vim'
 
+Plug 'yuttie/comfortable-motion.vim'
+
 Plug 'dense-analysis/ale'
 
 Plug 'neovimhaskell/haskell-vim'
 
 Plug 'alx741/vim-stylishask'
+
+Plug 'tpope/vim-surround'
 
 " Plug 'JamshedVesuna/vim-markdown-preview'
 
@@ -139,6 +143,8 @@ Plug 'tpope/vim-markdown'
 " Plug 'vim-pandoc/vim-pandoc'
 
 Plug 'junegunn/goyo.vim'
+
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
