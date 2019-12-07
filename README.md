@@ -2,7 +2,7 @@
 
 ### Here is the quick script to install them
 ```
-git clone --bare https://github.com/mihranmashhud/dotfiles.git $HOME/dotfiles
+git clone --recursive --bare https://github.com/mihranmashhud/dotfiles.git $HOME/dotfiles
 function config {
    /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME $@
 }
@@ -25,7 +25,7 @@ curl -Lks https://gist.github.com/mihranmashhud/e5ac2fef721b560addaaaf167c2b6362
 ### Or Step By Step:
 Clone the repo:
 ```
-git clone --bare https://github.com/mihranmashhud/dotfiles.git $HOME/dotfiles
+git clone --recursive --bare https://github.com/mihranmashhud/dotfiles.git $HOME/dotfiles
 ```
 Define the config alias in current shell scope:
 ```
