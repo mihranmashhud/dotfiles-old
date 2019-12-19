@@ -168,3 +168,6 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'markdown': ['languagetool','proselint'] 
 \}
+
+" RASI Syntax
+au BufNewFile,BufRead /*.rasi setf css
