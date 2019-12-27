@@ -8,6 +8,9 @@ let g:lightline = {
 set laststatus=2
 set noshowmode
 colorscheme snazzy
+hi NonText ctermbg=none
+hi Normal guibg=NONE ctermbg=NONE
+set t_Co=16
 let $t_ut=''
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1

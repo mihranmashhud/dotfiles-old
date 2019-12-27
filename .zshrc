@@ -1,5 +1,5 @@
-# Run tmux on startup
-# if [ "$TMUX" = "" ]; then tmux; fi
+# Add custom scripts folder
+[[ -d $HOME/scripts ]] && export PATH=$HOME/scripts:$PATH
 
 # If you come from bash you might have to change your $PATH.
   export PATH=$HOME/bin:/usr/local/bin:$PATH

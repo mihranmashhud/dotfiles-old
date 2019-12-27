@@ -6,6 +6,11 @@ xsetroot -cursor_name left_ptr & # default cursor
 udiskie & # usb mounting
 sxhkd & # keybindings
 picom & # compositor
+bg=$(xrdb -query | awk -v reso="background" '$1~reso{print $2;exit}')
+fg=$(xrdb -query | awk -v reso="foreground" '$1~reso{print $2;exit}')
+dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -frame_color "$bg" & # notifications
+kdeconnect-app &
+$HOME/.config/polybar/launch.sh # polybar
 
 # WALLPAPER (chosen randomly at startup)
 betterlockscreen -u ~/Pictures/Backgrounds
@@ -16,9 +21,9 @@ bspc monitor -d 0 1 2 3 4 5 6 7 8 9
 
 # BSPWM configuration
 bspc config border_width         2
-bspc config window_gap           10
-bspc config top_padding          0
-bspc config bottom_padding       20
+bspc config window_gap           8
+bspc config top_padding          20
+bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0
 bspc config single_monocle       false
