@@ -149,6 +149,8 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'kjwon15/vim-transparent'
+
 call plug#end()
 
 filetype plugin indent on

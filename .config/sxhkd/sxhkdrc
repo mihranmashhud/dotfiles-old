@@ -5,17 +5,25 @@
 Print
   maim ~/Pictures/Screenshots/$(date +%s).png && dunstify "Screen Captured"
 
+## Open Last dunst notification from history
+ctrl + grave
+  echo "Dunst History Opened"
+
 ## Lock the screen
 alt + shift + x
-  betterlockscreen -l blur
+  multilockscreen -l blur
 
 ## Lock the screen and suspend
 alt + shift + s
-  betterlockscreen -s blur
+  systemctl suspend
 
 ## Hibernate for max power savings
 alt + shift + h
   systemctl hibernate
+
+## Give me another wallpaper
+ctrl + alt + w
+  ~/scripts/random-wallpaper
 
 ## Open Wifi rofi menu
 alt + shift + w
