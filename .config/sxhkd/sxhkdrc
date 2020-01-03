@@ -5,10 +5,6 @@
 Print
   maim ~/Pictures/Screenshots/$(date +%s).png && dunstify "Screen Captured"
 
-## Open Last dunst notification from history
-ctrl + grave
-  echo "Dunst History Opened"
-
 ## Lock the screen
 alt + shift + x
   multilockscreen -l blur
@@ -22,8 +18,12 @@ alt + shift + h
   systemctl hibernate
 
 ## Give me another wallpaper
-ctrl + alt + w
+alt + r
   ~/scripts/random-wallpaper
+
+## Let me choose another wallpaper
+alt + w
+  kitty ~/scripts/choose-wallpaper
 
 ## Open Wifi rofi menu
 alt + shift + w
@@ -35,7 +35,7 @@ super + Return
 
 ## Open the program launcher
 super + @space
-  rofi -show drun -show-icons -icon-theme Papirus
+  rofi -modi drun,window -show drun
 
 ## Reload sxhkd config files
 super + Escape
@@ -149,14 +149,6 @@ super + alt + shift + {h,j,k,l}
 ## Contract a window via arrow keys
 super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-## Move a floating window
-super + {h,j,k,l}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-## Move a floating window via arrow keys
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 ### FUNCTION KEYS ###
 

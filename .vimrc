@@ -1,6 +1,9 @@
 " Syntax ON
 syntax on
 
+" Leader key
+let mapleader = ","
+
 " Colorscheme & Lightline
 let g:lightline = {
 \ 'colorscheme': 'snazzy',
@@ -159,7 +162,6 @@ filetype plugin indent on
 "   Word count:
 nnoremap <F3> :w !detex \| wc -w<CR> 
 "let vim_markdown_preview_pandoc=1
-"let g:pandoc_preview_pdf_cmd = "zathura" 
 let g:md_pdf_viewer="zathura"
 let g:md_args="--filter pandoc-citeproc -V fontsize=12pt"
 autocmd BufRead,BufNewFile *.md setlocal spell

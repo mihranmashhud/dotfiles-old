@@ -25,7 +25,12 @@ FILENAME=`basename "$0"`
 show_devices (){
     IFS=$','
     devices=""
-    for device in $(qdbus --literal org.kde.kdeconnect /modules/kdeconnect org.kde.kdeconnect.daemon.devices); do
+    devicelist=$(qdbus --literal org.kde.kdeconnect /modules/kdeconnect org.kde.kdeconnect.daemon.devices)
+    if [ "$devicelist" = "{}" ]
+    then
+            echo ""
+    else
+    for device in $devicelist; do
         deviceid=$(echo "$device" | awk -F'["|"]' '{print $2}')
         devicename=$(qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$deviceid" org.kde.kdeconnect.device.name)
         devicetype=$(qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$deviceid" org.kde.kdeconnect.device.type)
@@ -51,6 +56,7 @@ show_devices (){
         fi
     done
     echo "${devices::-1}"
+    fi
 }
 
 show_menu () {
@@ -70,14 +76,14 @@ show_menu () {
 }
 
 show_pmenu () {
-    menu="$(rofi -sep "|" -dmenu -i -p "$DEV_NAME" -location $LOCATION -yoffset $YOFFSET -xoffset $XOFFSET -theme $THEME -hide-scrollbar -line-padding 1 -padding 20 -lines 1<<<"Pair Device")"
+    menu="$(rofi -sep "|" -dmenu -i -p "$DEV_NAME" -location $LOCATION -yoffset $YOFFSET -xoffset $XOFFSET -hide-scrollbar -line-padding 1 -padding 20 -lines 1<<<"Pair Device")"
                 case "$menu" in
                     *'Pair Device') qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$DEV_ID" org.kde.kdeconnect.device.requestPair
                 esac
 }
 
 show_pmenu2 () {
-    menu="$(rofi -sep "|" -dmenu -i -p "$1 has sent a pairing request" -location $LOCATION -yoffset $YOFFSET -xoffset $XOFFSET -theme -hide-scrollbar -line-padding 4 -padding 20 -lines 2 <<< "Accept|Reject")"
+    menu="$(rofi -sep "|" -dmenu -i -p "$1 has sent a pairing request" -location $LOCATION -yoffset $YOFFSET -xoffset $XOFFSET -hide-scrollbar -line-padding 4 -padding 20 -lines 2 <<< "Accept|Reject")"
                 case "$menu" in
                     *'Accept') qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" org.kde.kdeconnect.device.acceptPairing ;;
                     *) qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" org.kde.kdeconnect.device.rejectPairing
