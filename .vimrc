@@ -21,9 +21,12 @@ endif
 set cursorline
 
 " Tab
-set tabstop=2
+
 " Tabs are spaces
 set expandtab
+set shiftwidth=2
+set softtabstop=2
+
 
 " Line Numbers
 set number relativenumber
@@ -153,6 +156,10 @@ Plug 'junegunn/goyo.vim'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'kjwon15/vim-transparent'
+
+Plug 'preservim/nerdtree'
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
