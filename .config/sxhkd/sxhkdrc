@@ -45,6 +45,7 @@ super + @space
 super + Escape
   pkill -USR1 -x sxhkd
 
+
 ### Bspwm hotkeys ###
 
 ## Quit/Restart bspwm
@@ -69,7 +70,6 @@ super + g
 
 
 ## State & Flags ##
-
 
 ## Set the window state (tiled, psuedo tiled, floating, fullscreen)
 super + {t,shift + t,f,shift + f}
@@ -115,6 +115,7 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} '^{1-9,10}'
 
+
 ## Preselect ##
 
 ## Preselect the direction
@@ -136,6 +137,11 @@ super + ctrl + space
 super + ctrl + shift + space
   bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+## Move the focused window to the preselection
+super + ctrl + p
+  bspc node -n 'last.!automatic.local'
+
+
 ## Move & Resize ##
 
 ## Expand a window by moving one of its side outward
@@ -153,6 +159,7 @@ super + alt + shift + {h,j,k,l}
 ## Contract a window via arrow keys
 super + alt + shift + {Left,Down,Up,Right}
   bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
 
 ### FUNCTION KEYS ###
 
