@@ -5,8 +5,8 @@ xsetroot -cursor_name left_ptr & # default cursor
 udiskie & # usb mounting
 sxhkd & # keybindings
 picom -bfc # compositor
-bg=$(xrdb -query | awk -v reso="background" '$1~reso{print $2;exit}')
-fg=$(xrdb -query | awk -v reso="foreground" '$1~reso{print $2;exit}')
+bg=$(xgetres background)
+fg=$(xgetres foreground)
 dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -frame_color "$fg" & # notifications
 $HOME/.config/polybar/launch.sh # polybar
 
@@ -17,7 +17,10 @@ xss-lock -l -- multilockscreen --lock blur &
 
 # MONITOR
 if [[ $(hostname) == 'mihranLaptop' ]]; then
-  bspc monitor eDP1 -d 0 1 2 3 4 
+  bspc monitor eDP1 -d 0 1 2 3 4
+elif [[ $(hostname) == 'mihranDesktop' ]]; then
+  bspc monitor HDMI-A-0 -d 0 1 2 3 4
+  bspc monitor DVI-D-0 -d 6 7 8 9 10
 fi
 
 # BSPWM configuration
