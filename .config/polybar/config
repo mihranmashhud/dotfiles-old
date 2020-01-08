@@ -36,6 +36,36 @@ darkgrey = ${xrdb:color8:#0f0f0f}
 lightgrey = ${xrdb:color7:#f1f1f0}
 white = ${xrdb:color15:#eff0eb}
 
+[bar/mydesktopbar]
+monitor = ${env:MONITOR:HDMI-1}
+
+width = 100%
+height = 20
+fixedcenter = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 0
+
+font-0 = Fira Code:pixelsize=10;
+font-1 = siji:pixelsize=10;
+font-2 = Iosevka Nerd Font:pixelsize=10;
+font-3 = FuraCode Nerd Font:pixelsize=10;
+
+modules-left = bspwm xwindow
+modules-center = date
+modules-right = bluetooth kdeconnect alsa wland ethd powermenu
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+override-redirect = true
+wm-restack = bspwm
+
 [bar/mybar]
 width = 100%
 height = 20
@@ -117,6 +147,10 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
+[module/wland]
+inherit = module/wlan
+interface = wlp9s0f3u2
+
 [module/wlan]
 type = internal/network
 interface = wlp3s0
@@ -133,6 +167,10 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/ethd]
+inherit = module/eth
+interface = enp3s0
 
 [module/eth]
 type = internal/network
