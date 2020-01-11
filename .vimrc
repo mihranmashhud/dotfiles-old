@@ -83,15 +83,16 @@ nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " use <tab> for trigger completion and navigate to the next complete item
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
@@ -109,6 +110,20 @@ let g:lightline = {
       \ },
       \ }
 
+" Coc Snippets
+" expand snippet
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" select text for visual placeholder
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" jump to placeholder
+let g:coc_snippet_next = '<c-j>'
+
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "Plug-ins
 call plug#begin('~/.vim/plugged')
