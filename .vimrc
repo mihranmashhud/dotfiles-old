@@ -150,21 +150,15 @@ Plug 'alx741/vim-stylishask'
 
 Plug 'tpope/vim-surround'
 
-" Plug 'JamshedVesuna/vim-markdown-preview'
-
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'conornewton/vim-pandoc-markdown-preview'
-
-" Plug 'lingnand/pandoc-preview.vim'
 
 Plug 'jpalardy/vim-slime'
 
 Plug 'godlygeek/tabular'
 
 Plug 'tpope/vim-markdown'
-
-" Plug 'vim-pandoc/vim-pandoc'
 
 Plug 'junegunn/goyo.vim'
 
@@ -175,6 +169,8 @@ Plug 'kjwon15/vim-transparent'
 Plug 'preservim/nerdtree'
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
