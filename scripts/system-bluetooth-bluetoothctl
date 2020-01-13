@@ -23,7 +23,7 @@ bluetooth_print() {
                     counter=$((counter + 1))
                 fi
 
-                printf '\n'
+                printf '|'
             done
         else
           echo "%{F$(xgetres darkgrey)}%{F-}"

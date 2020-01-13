@@ -85,6 +85,9 @@ inoremap <Up> <C-o>gk
 set whichwrap+=<,>,h,l,[,]
 set virtualedit=onemore
 
+" Mouse Support
+set mouse=a
+
 " Coc -------------------------------------------------------------------
 nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -219,4 +222,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter NERD_tree* :LeadingSpaceDisable
 
+" IndentLine
+let g:indentLine_char = '│'
+let g:indentLine_concealcursor = 0
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
