@@ -98,5 +98,3 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/home/mihranmashhud'
-export SUDO_EDITOR="/usr/bin/vim"
-export EDITOR="/usr/bin/vim"
