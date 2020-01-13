@@ -3,7 +3,7 @@
 
 ! Black + DarkGrey
 #define COLOR0  #020307
-#define COLOR8  #0F0F0F
+#define COLOR8  #272a2d
 ! DarkRed + Red
 #define COLOR1  #ff5c57
 #define COLOR9  #ff5c57
@@ -23,5 +23,5 @@
 #define COLOR6  #9aedfe
 #define COLOR14 #9aedfe
 ! LightGrey + White 
-#define COLOR7  #f1f1f0
+#define COLOR7  #cecece
 #define COLOR15 #eff0eb

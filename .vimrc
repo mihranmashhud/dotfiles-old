@@ -1,13 +1,27 @@
+" Encoding
+set encoding=UTF-8
+
 " Syntax ON
 syntax on
 
 " Leader key
 let mapleader = ","
 
-" Colorscheme & Lightline
+" Colorscheme
+"   Lightline
 let g:lightline = {
-\ 'colorscheme': 'snazzy',
-\ }
+  \ 'colorscheme': 'snazzy',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'cocstatus', 'currentfunction','gitbranch' ,'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction',
+  \   'gitbranch': 'fugitive#head'
+  \ },
+  \ }
+
 set laststatus=2
 set noshowmode
 colorscheme snazzy
@@ -20,17 +34,11 @@ if (&term =~ '^xterm' && &t_Co == 256)
 endif
 set cursorline
 
-" Tab
-
 " Tabs are spaces
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-
+set expandtab shiftwidth=2 softtabstop=2
 
 " Line Numbers
-set number relativenumber
-set nu rnu
+set number relativenumber nu rnu
 
 " Word Wrap
 set wrap linebreak nolist
@@ -51,8 +59,7 @@ set lazyredraw
 set showmatch
 
 " Searching
-set incsearch
-set hlsearch
+set incsearch hlsearch
 
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -84,31 +91,33 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+  \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
+  return get(b:, 'coc_current_function', '')
 endfunction
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+      "\ 'active': {
+      "\   'left': [ [ 'mode', 'paste' ],
+      "\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      "\ },
+      "\ 'component_function': {
+      "\   'cocstatus': 'coc#status',
+      "\   'currentfunction': 'CocCurrentFunction'
+      "\ },
+      "\ }
 
 " Coc Snippets
 " expand snippet
@@ -172,6 +181,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'tpope/vim-fugitive'
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
 
 filetype plugin indent on
@@ -196,3 +211,11 @@ let g:ale_fixers = {
 
 " RASI Syntax
 au BufNewFile,BufRead /*.rasi setf css
+
+" NERDTREE
+map <C-n> :NERDTreeToggle<CR>
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+

@@ -185,7 +185,7 @@ type = internal/alsa
 format-volume = <bar-volume>
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.darkgrey}
 label-muted = sound muted
 
 bar-volume-width = 10
