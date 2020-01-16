@@ -26,7 +26,6 @@ set laststatus=2
 set noshowmode
 colorscheme snazzy
 hi NonText ctermbg=none
-hi Normal guibg=NONE ctermbg=NONE
 set t_Co=16
 let $t_ut=''
 if (&term =~ '^xterm' && &t_Co == 256)
@@ -109,18 +108,6 @@ endfunction
 function! CocCurrentFunction()
   return get(b:, 'coc_current_function', '')
 endfunction
-
-"let g:lightline = {
-      "\ 'colorscheme': 'wombat',
-      "\ 'active': {
-      "\   'left': [ [ 'mode', 'paste' ],
-      "\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      "\ },
-      "\ 'component_function': {
-      "\   'cocstatus': 'coc#status',
-      "\   'currentfunction': 'CocCurrentFunction'
-      "\ },
-      "\ }
 
 " Coc Snippets
 " expand snippet

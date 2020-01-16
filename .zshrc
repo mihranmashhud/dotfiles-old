@@ -65,7 +65,7 @@ export ZSH_CUSTOM="$HOME/.config/zsh/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting git zsh-nvm wd catimg command-not-found compleat debian fasd history jsontools meteor npm perms pip sudo vscode web-search zsh-256color zsh-better-npm-completion)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting git zsh-nvm wd command-not-found compleat debian fasd history npm pip sudo web-search zsh-256color zsh-better-npm-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -77,17 +77,22 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+  { eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"; } &>/dev/null
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -98,3 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/home/mihranmashhud'
+# rmtrash aliases
+alias rm='rmtrash --forbid-root'
+alias rmdir='rmdirtrash --forbid-root'
+alias cs-server="ssh -t mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"

@@ -11,7 +11,7 @@ WIDTH_WIDE=24
 COLOR_DISCONNECTED="$(xgetres darkgrey)"       # Device Disconnected
 COLOR_NEWDEVICE="$(xgetres yellow)"          # New Device
 COLOR_BATTERY="$(xgetres foreground)"      # Battery >= 90
-COLOR_BATTERY_LOW="$(xgetres background)"        # Battery <  50
+COLOR_BATTERY_LOW="$(xgetres red)"        # Battery <  50
 
 # Icons shown in Polybar
 ICON_SMARTPHONE=''
