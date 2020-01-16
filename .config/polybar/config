@@ -66,17 +66,18 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-1}
 modules-left = bspwm xwindow
 modules-center = date
-modules-right = bluetooth kdeconnect alsa wland ethd powermenu
+modules-right = kdeconnect alsa wland ethd powermenu
 
 [bar/mybar]
 inherit = bar/base
 modules-left = bspwm xwindow
 modules-center = xbacklight date alsa
-modules-right = kdeconnect bluetooth wlan eth battery0 battery1 powermenu
+modules-right = bluetooth kdeconnect wlan eth battery0 battery1 powermenu
 
 [module/bluetooth]
 type = custom/script
 exec = ~/scripts/system-bluetooth-bluetoothctl
+label = "%output% "
 tail = true
 click-left = ~/scripts/system-bluetooth-bluetoothctl --toggle &
 
