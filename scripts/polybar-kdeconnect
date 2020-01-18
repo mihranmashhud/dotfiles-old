@@ -91,6 +91,7 @@ get_icon () {
     if [ "$3" = "true" ]
     then
         charging="+"
+        COLOR_BATTERY_LOW=$COLOR_BATTERY
     else
         charging=""
     fi

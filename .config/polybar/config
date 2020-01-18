@@ -54,6 +54,7 @@ font-0 = Fira Code:pixelsize=10;
 font-1 = siji:pixelsize=10;
 font-2 = Iosevka Nerd Font:pixelsize=10;
 font-3 = FuraCode Nerd Font:pixelsize=10;
+font-4 = Material Icons:pixelsize=10;
 
 override-redirect = true
 wm-restack = bspwm
@@ -66,18 +67,17 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-1}
 modules-left = bspwm xwindow
 modules-center = date
-modules-right = kdeconnect alsa wland ethd powermenu
+modules-right = bluetooth kdeconnect alsa wland ethd powermenu
 
 [bar/mybar]
 inherit = bar/base
 modules-left = bspwm xwindow
 modules-center = xbacklight date alsa
-modules-right = bluetooth kdeconnect wlan eth battery0 battery1 powermenu
+modules-right = kdeconnect wlan eth battery0 battery1 powermenu
 
 [module/bluetooth]
 type = custom/script
-exec = ~/scripts/system-bluetooth-bluetoothctl
-label = "%output% "
+exec = "~/scripts/system-bluetooth-bluetoothctl"
 tail = true
 click-left = ~/scripts/system-bluetooth-bluetoothctl --toggle &
 
@@ -261,7 +261,6 @@ full-at = 96
 inherit = module/battery
 battery = BAT1
 full-at = 96
-format-charging = <animation-charging>
 
 [module/powermenu]
 type = custom/menu

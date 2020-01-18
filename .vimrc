@@ -177,20 +177,31 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+Plug 'PProvost/vim-markdown-jekyll'
+
 call plug#end()
 
 filetype plugin indent on
 
-" Writing
+" Writing (Pandoc Markdown)
 "   Word count:
 nnoremap <F3> :w !detex \| wc -w<CR> 
 "let vim_markdown_preview_pandoc=1
 let g:md_pdf_viewer="zathura"
-let g:md_args="--filter pandoc-citeproc -V fontsize=12pt"
+let g:md_args="--filter pandoc-citeproc -V --template eisvogel --listings"
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.Rmd setlocal spell
 autocmd BufNewfile,BufRead *.Rmd set filetype=markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+" This gets rid of the nasty _ italic bug in tpope's vim-markdown
+" block $$...$$
+syn region math start=/\$\$/ end=/\$\$/
+" inline math
+syn match math '\$[^$].\{-}\$'
+" actually highlight the region we defined as "math"
+hi link math Statement
 
 " Ale
 let g:ale_completion_enabled = 1
@@ -216,3 +227,7 @@ let g:indentLine_char = '│'
 let g:indentLine_concealcursor = 0
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
+
+" Markdown Preview
+nmap <C-p> <Plug>MarkdownPreviewToggle
+
