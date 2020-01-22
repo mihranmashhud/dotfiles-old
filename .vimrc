@@ -87,6 +87,11 @@ set virtualedit=onemore
 " Mouse Support
 set mouse=a
 
+" Cursor
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 " Coc -------------------------------------------------------------------
 nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
