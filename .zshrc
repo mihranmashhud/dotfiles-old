@@ -78,7 +78,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -107,3 +107,7 @@ alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/
 alias rm='rmtrash --forbid-root'
 alias rmdir='rmdirtrash --forbid-root'
 alias cs-server="ssh -t mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
+alias vim='nvim'
+alias vimrc='nvim ~/.config/nvim/init.vim'
+
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"

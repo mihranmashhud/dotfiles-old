@@ -1,14 +1,7 @@
-" Encoding
-set encoding=UTF-8
-
-" Syntax ON
-syntax on
-
 " Leader key
 let mapleader = ","
 
-" Colorscheme
-"   Lightline
+" Lightline
 let g:lightline = {
   \ 'colorscheme': 'snazzy',
   \ 'active': {
@@ -22,12 +15,7 @@ let g:lightline = {
   \ },
   \ }
 
-set laststatus=2
 set noshowmode
-colorscheme snazzy
-hi NonText ctermbg=none
-set t_Co=16
-let $t_ut=''
 if (&term =~ '^xterm' && &t_Co == 256)
   set t_ut= | set ttyscroll=1
 endif
@@ -42,14 +30,8 @@ set number relativenumber nu rnu
 " Word Wrap
 set wrap linebreak nolist
 
-" Show command
-set showcmd
-
 " filetype detection
 filetype indent on
-
-" Wild menu
-set wildmenu
 
 " Lazy redrawing
 set lazyredraw
@@ -129,63 +111,62 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-"Plug-ins
+" Before Ale loading
+let g:ale_sign_highlight_linenrs = 1
+
+" Plug-ins
 call plug#begin('~/.vim/plugged')
 
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-
+"Plug 'prettier/vim-prettier', {
+  "\ 'do': 'npm install',
+  "\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+" COC - For autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'wlangstroth/vim-racket'
-
+" Snazzy colorscheme
 Plug 'connorholyday/vim-snazzy'
-
+" Lightline Status bar
 Plug 'itchyny/lightline.vim'
-
+" Smooth Scrolling
 Plug 'yuttie/comfortable-motion.vim'
-
+" Ale - Linter, Errors, Fixing, etc...
 Plug 'dense-analysis/ale'
-
+" Better Haskell syntax highlighting
 Plug 'neovimhaskell/haskell-vim'
-
+" Format on save for haskell
 Plug 'alx741/vim-stylishask'
-
+" deal wth elements that surround text like (),[],{},"",'', etc...
 Plug 'tpope/vim-surround'
-
+" Perfom async shell commands (Used by other plugins)
 Plug 'skywind3000/asyncrun.vim'
-
+" Pandoc-markdown live pdf preview
 Plug 'conornewton/vim-pandoc-markdown-preview'
-
-Plug 'jpalardy/vim-slime'
-
+" Text alignment
 Plug 'godlygeek/tabular'
-
+" Better markdown highlighting
 Plug 'tpope/vim-markdown'
-
+" Zen mode
 Plug 'junegunn/goyo.vim'
-
+" For commenting out code
 Plug 'scrooloose/nerdcommenter'
-
+" Makes the background truly transparent
 Plug 'kjwon15/vim-transparent'
-
+" File Tree View
 Plug 'preservim/nerdtree'
-
+" Nerdtree's git integration
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+" Automatically pairs things like (),{},[],"",'', etc...
 Plug 'jiangmiao/auto-pairs'
-
+" For integrating vim with git
 Plug 'tpope/vim-fugitive'
-
+" Have nice devicons in Nerdtree
 Plug 'ryanoasis/vim-devicons'
-
+" Show indent level
 Plug 'Yggdroot/indentLine'
-
+" Markdown live preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-
+" Syntax for YAML front matter
 Plug 'PProvost/vim-markdown-jekyll'
-
+" Julia vim support
 Plug 'JuliaEditorSupport/julia-vim'
 
 call plug#end()
@@ -240,3 +221,7 @@ let g:indentLine_leadingSpaceChar = '·'
 " Markdown Preview
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
+" Goyo - Zen Mode
+nmap <c-k>z :Goyo<CR>
+" Colorscheme
+colorscheme snazzy
