@@ -1,4 +1,4 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export SUDO_EDITOR="/usr/bin/vim"
-export EDITOR="/usr/bin/vim"
+export SUDO_EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 export PATH=$PATH:~/.local/bin
