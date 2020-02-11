@@ -1,58 +1,37 @@
-" Leader key
+" Leader key {{{
 let mapleader = ","
-
-" Lightline
-let g:lightline = {
-  \ 'colorscheme': 'snazzy',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'cocstatus', 'currentfunction','gitbranch' ,'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component_function': {
-  \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction',
-  \   'gitbranch': 'fugitive#head'
-  \ },
-  \ }
-
-set noshowmode
-if (&term =~ '^xterm' && &t_Co == 256)
-  set t_ut= | set ttyscroll=1
-endif
+" }}}
+" Line Highlight {{{
 set cursorline
-
-" Tabs are spaces
+" }}}
+" Tabs Are Spaces {{{
 set expandtab shiftwidth=2 softtabstop=2
-
-" Line Numbers
+" }}}
+" Line Numbers {{{
 set number relativenumber nu rnu
-
-" Word Wrap
+" }}}
+" Word Wrap {{{
 set wrap linebreak nolist
-
-" filetype detection
+" }}}
+" Filetype indent detection {{{
 filetype indent on
-
-" Lazy redrawing
-set lazyredraw
-
-" Highlight matching brackets
+" }}}
+" Highlight matching brackets {{{
 set showmatch
-
-" Searching
+" }}}
+" Searching {{{
 set incsearch hlsearch
-
 " Remove search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-
-" Code folding
+" }}}
+" Code folding {{{
 set foldenable
 set foldlevelstart=10
 " Key binding for code folding
 nnoremap <space> za
 set foldmethod=indent
-
-" Movement
+" }}}
+" Movement {{{
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -65,19 +44,34 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 set whichwrap+=<,>,h,l,[,]
 set virtualedit=onemore
-
-" Mouse Support
+" Window Split Movement
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+nmap <silent> <A-l> :wincmd l<CR>
+" }}}
+" Mouse Support {{{
 set mouse=a
-
-" Cursor
+" }}}
+" Cursor {{{
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-
-" Coc -------------------------------------------------------------------
+" }}}
+" Copy, cut, paste, undo, etc... {{{
+vmap <C-c> "+y
+vmap <C-x> "+d
+imap <C-v> <Esc>pi
+imap <C-z> <Esc>ui
+imap <C-a> <Esc>ggvG$
+" }}}
+" Coc {{{
 nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
-
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
@@ -111,25 +105,25 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" Before Ale loading
-let g:ale_sign_highlight_linenrs = 1
+" }}}
+" Balloon hover info (Ale) {{{
+let g:ale_set_balloons = 1
 
-" Plug-ins
+" }}}
+
+" Plug-ins {{{
 call plug#begin('~/.vim/plugged')
 
-"Plug 'prettier/vim-prettier', {
-  "\ 'do': 'npm install',
-  "\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-" COC - For autocomplete
+" Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Ale
+Plug 'dense-analysis/ale'
 " Snazzy colorscheme
 Plug 'connorholyday/vim-snazzy'
 " Lightline Status bar
 Plug 'itchyny/lightline.vim'
 " Smooth Scrolling
 Plug 'yuttie/comfortable-motion.vim'
-" Ale - Linter, Errors, Fixing, etc...
-Plug 'dense-analysis/ale'
 " Better Haskell syntax highlighting
 Plug 'neovimhaskell/haskell-vim'
 " Format on save for haskell
@@ -168,12 +162,37 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'PProvost/vim-markdown-jekyll'
 " Julia vim support
 Plug 'JuliaEditorSupport/julia-vim'
+" View File Outline
+Plug 'majutsushi/tagbar'
+" Browser integration
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
 call plug#end()
 
 filetype plugin indent on
 
-" Writing (Pandoc Markdown)
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+  \ 'colorscheme': 'snazzy',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'cocstatus', 'currentfunction','gitbranch' ,'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction',
+  \   'gitbranch': 'fugitive#head'
+  \ },
+  \ }
+set laststatus=2
+set noshowmode
+if (&term =~ '^xterm' && &t_Co == 256)
+  set t_ut= | set ttyscroll=1
+endif
+" }}}
+" Writing (Pandoc + Markdown) {{{
 "   Word count:
 nnoremap <F3> :w !detex \| wc -w<CR> 
 "let vim_markdown_preview_pandoc=1
@@ -191,20 +210,21 @@ syn match math '\$[^$].\{-}\$'
 " actually highlight the region we defined as "math"
 hi link math Statement
 
-" Ale
+" }}}
+" Ale {{{
 let g:ale_completion_enabled = 1
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'markdown': ['languagetool','proselint'] 
 \}
-" Balloon hover info
-let g:ale_set_balloons = 1
 
-" RASI Syntax
+" }}}
+" RASI Syntax {{{
 au BufNewFile,BufRead /*.rasi setf css
 
-" NERDTREE
-map <C-n> :NERDTreeToggle<CR>
+" }}}
+" NERDTREE {{{
+map <A-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 autocmd StdinReadPre * let s:std_in=1
@@ -212,16 +232,30 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufEnter NERD_tree* :LeadingSpaceDisable
 
-" IndentLine
+" }}}
+" IndentLine {{{
 let g:indentLine_char = '│'
 let g:indentLine_concealcursor = 0
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 
-" Markdown Preview
+" }}}
+" Markdown Preview {{{
 nmap <C-p> <Plug>MarkdownPreviewToggle
 
-" Goyo - Zen Mode
+" }}}
+" Goyo - Zen Mode {{{
 nmap <c-k>z :Goyo<CR>
-" Colorscheme
+
+" }}}
+" Colorscheme {{{
 colorscheme snazzy
+
+" }}}
+" Modelines {{{ 
+set modelines=1
+" }}}
+" Tagbar {{{
+nmap <A-t> :TagbarToggle<CR>
+" }}}
+" vim:foldmethod=marker:foldlevel=0
