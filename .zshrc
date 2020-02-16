@@ -81,18 +81,18 @@ source $ZSH/oh-my-zsh.sh
    export EDITOR='nvim'
  fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
+# SSH Agent for easier remote file editing
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
   { eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"; } &>/dev/null
 fi
+
+# kitty terminal completion
+autoload -Uz compinit
+compinit
+kitty + complete setup zsh | source /dev/stdin
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

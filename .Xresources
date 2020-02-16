@@ -45,4 +45,5 @@ rofi.color-active: BACKGROUND, FOREGROUND, BACKGROUND, BACKGROUND, COLOR4
 rofi.color-urgent: BACKGROUND, FOREGROUND, BACKGROUND, BACKGROUND, COLOR4
 
 ! Cursor Theme
-Xcursor.theme:  Bibata_Oil
+Xcursor.theme:  Bibata_Classic
+Xcursor.size: 16
