@@ -30,7 +30,16 @@ set foldenable
 set foldlevelstart=10
 " Key binding for code folding
 nnoremap <space> za
-set foldmethod=indent
+set foldmethod=syntax
+set foldlevelstart=10
+
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let xml_syntax_folding=1      " XML
 " }}}
 " Movement {{{
 nnoremap j gj
@@ -89,6 +98,9 @@ imap <C-v> <Esc>pi
 imap <C-z> <Esc>ui
 imap <C-a> <Esc>ggvG$
 " }}}
+" Netrw {{{
+let g:netrw_browse_split = 3
+" }}}
 " Coc {{{
 nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -134,7 +146,10 @@ let g:ale_set_balloons = 1
 " Plug-ins {{{
 call plug#begin('~/.vim/plugged')
 
-" Language Specific {{{
+" Languages {{{
+" ALL {{{
+Plug 'sheerun/vim-polyglot'
+" }}}
 " Haskell {{{
 " Better Haskell syntax highlighting
 Plug 'neovimhaskell/haskell-vim'
@@ -156,6 +171,18 @@ Plug 'PProvost/vim-markdown-jekyll'
 Plug 'mattly/vim-markdown-enhancements'
 " Pandoc-markdown live pdf preview
 Plug 'conornewton/vim-pandoc-markdown-preview'
+" }}}
+" Svelte 3 {{{
+Plug 'evanleck/vim-svelte'
+" }}}
+" C/C++ {{{
+Plug 'arakashic/chromatica.nvim'
+" }}}
+" JavaScript {{{
+" Prettier
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'yaml', 'html'] }
 " }}}
 " }}}
 " Interface (Anything that adds to or changes the vim interface) {{{
@@ -294,7 +321,8 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufEnter NERD_tree* :LeadingSpaceDisable
-
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " }}}
 " IndentLine {{{
 let g:indentLine_char = '│'
