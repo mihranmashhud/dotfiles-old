@@ -1,3 +1,4 @@
+if !exists('g:vscode')
 " Leader key {{{
 let mapleader = ","
 " }}}
@@ -217,7 +218,6 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-surround'
 " For commenting out code
 Plug 'scrooloose/nerdcommenter'
-
 " }}}
 " Quality of Life {{{
 " Smooth Scrolling
@@ -349,4 +349,53 @@ set modelines=1
 " Tagbar {{{
 nmap <A-t> :TagbarToggle<CR>
 " }}}
+else
+" Visual Studio Code Settings {{{
+" Leader key {{{
+let mapleader = ","
+" }}}
+" Searching {{{
+set incsearch hlsearch
+" Remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+" }}}
+" Movement {{{
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+set whichwrap+=<,>,h,l,[,]
+set virtualedit=onemore
+" }}}
+
+" Plug-ins {{{
+call plug#begin('~/.vim/plugged')
+
+" More commands {{{
+" deal wth elements that surround text like (),[],{},"",'', etc...
+Plug 'tpope/vim-surround'
+" For commenting out code
+Plug 'scrooloose/nerdcommenter'
+" }}}
+" Quality of Life {{{
+" Perfom async shell commands (Used by other plugins)
+Plug 'skywind3000/asyncrun.vim'
+" Text alignment
+Plug 'godlygeek/tabular'
+" }}}
+
+call plug#end()
+
+filetype plugin indent on
+
+" }}}
+
+" }}}
+endif
 " vim:foldmethod=marker:foldlevel=0
