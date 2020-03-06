@@ -18,6 +18,8 @@ xss-lock -l -- multilockscreen --lock blur &
 
 # MONITOR
 if [[ $(hostname) == 'mihranLaptop' ]]; then
+  conky -c ~/.config/conky/thinkpadIMG.conf &
+  conky &
   bspc monitor eDP1 -d 0 1 2 3 4 5 6 7 8 9
 elif [[ $(hostname) == 'mihranDesktop' ]]; then
   bspc monitor HDMI-A-0 -d 0 1 2 3 4

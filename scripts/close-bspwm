@@ -8,6 +8,7 @@ killall picom
 killall caffeine
 killall dunst
 killall xss-lock
+killall conky
 
 # KILL ALL WINDOWS
 for window_id in $(bspc query -W); do
