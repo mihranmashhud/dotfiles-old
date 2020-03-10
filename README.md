@@ -1,5 +1,5 @@
 ### Warning!
-I don't recommend using the script below as it does **NOT PROPERLY BACKUP** the dotfiles on your system!
+I don't recommend using the script below as it **DOES NOT PROPERLY BACKUP** the dotfiles on your system!
 
 # My dotfiles
 
