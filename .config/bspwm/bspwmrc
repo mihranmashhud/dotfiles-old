@@ -8,7 +8,7 @@ picom -bfc # compositor
 caffeine & # caffeine for not sleep at the wrong time
 bg=$(xgetres background)
 fg=$(xgetres foreground)
-dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -frame_color "$fg" & # notifications
+dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -frame_color "$fg" &
 $HOME/.config/polybar/launch.sh # polybar
 
 # WALLPAPER (chosen randomly at startup)

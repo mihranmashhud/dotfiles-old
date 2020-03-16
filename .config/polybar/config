@@ -73,7 +73,14 @@ modules-right = bluetooth kdeconnect alsa wland ethd powermenu
 inherit = bar/base
 modules-left = bspwm xwindow
 modules-center = xbacklight date alsa
-modules-right = kdeconnect wlan eth battery0 battery1 powermenu
+modules-right = snooze kdeconnect wlan eth battery0 battery1 powermenu
+
+[module/snooze]
+type = custom/script
+exec = "~/scripts/dunst-snooze"
+label = "%output%"
+label-font = 5
+interval = 1
 
 [module/bluetooth]
 type = custom/script
@@ -137,10 +144,10 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = %{A1:~/scripts/networkmanager_dmenu:} <ramp-signal> <label-connected> %{A}
+format-connected = %{A1:~/scripts/networkmanager_dmenu:}<ramp-signal> <label-connected> %{A}
 label-connected = %essid%
 
-format-disconnected = %{A1:~/scripts/networkmanager_dmenu:} No Wifi %{A}
+format-disconnected = %{A1:~/scripts/networkmanager_dmenu:}No Wifi %{A}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
