@@ -87,7 +87,7 @@ start_snooze() {
       length='5h';;
     '6 hours')
       length='6h';;
-    'Cancel')
+    'Cancel'|'')
       return;;
     *)
       length=$menu;;

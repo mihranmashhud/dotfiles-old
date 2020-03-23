@@ -27,7 +27,7 @@ configuration {
 /*	ignored-prefixes: "";*/
 	sort: true;
 /*	sorting-method: ;*/
-/*	case-sensitive: false;*/
+        case-sensitive: true;
 /*	cycle: true;*/
 	sidebar-mode: true;
 /*	eh: 1;*/

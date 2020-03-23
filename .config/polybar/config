@@ -64,10 +64,18 @@ cursor-scroll = ns-resize
 
 [bar/mydesktopbar]
 inherit = bar/base
-monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:HDMI-2}
 modules-left = bspwm xwindow
 modules-center = date
-modules-right = bluetooth kdeconnect alsa wland ethd powermenu
+modules-right = snooze bluetooth kdeconnect alsa wland ethd powermenu
+
+[bar/mydesktopbar1]
+inherit = bar/mydesktopbar
+monitor = HDMI-A-0
+
+[bar/mydesktopbar2]
+inherit = bar/mydesktopbar
+monitor = DVI-D-0
 
 [bar/mybar]
 inherit = bar/base
