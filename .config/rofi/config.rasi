@@ -26,8 +26,8 @@ configuration {
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
 	sort: true;
-/*	sorting-method: ;*/
-        case-sensitive: true;
+        sorting-method: "fzf";
+        case-sensitive: false;
 /*	cycle: true;*/
 	sidebar-mode: true;
 /*	eh: 1;*/
@@ -35,7 +35,7 @@ configuration {
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
 /*	combi-modi: "window,run";*/
-/*	matching: "normal";*/
+        matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	line-margin: 2;*/
@@ -105,7 +105,7 @@ configuration {
 /*	kb-ellipsize: "Alt+period";*/
 /*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
 /*	kb-toggle-sort: "Alt+grave";*/
-/*	kb-cancel: "Escape,Control+g,Control+bracketleft";*/
+        kb-cancel: "Escape,Control+g,Control+bracketleft,Super+w";
 /*	kb-custom-1: "Alt+1";*/
 /*	kb-custom-2: "Alt+2";*/
 /*	kb-custom-3: "Alt+3";*/
