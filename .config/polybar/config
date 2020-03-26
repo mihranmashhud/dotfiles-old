@@ -66,7 +66,7 @@ cursor-scroll = ns-resize
 inherit = bar/base
 monitor = ${env:MONITOR:HDMI-2}
 modules-left = bspwm xwindow
-modules-center = date
+modules-center = date 
 modules-right = snooze bluetooth kdeconnect alsa wland ethd powermenu
 
 [bar/mydesktopbar1]
@@ -145,7 +145,7 @@ bar-empty-foreground = ${colors.foreground-alt}
 
 [module/wland]
 inherit = module/wlan
-interface = wlp9s0f3u2
+interface = wlp1s0f0u9
 
 [module/wlan]
 type = internal/network
