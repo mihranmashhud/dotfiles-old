@@ -92,7 +92,7 @@ fi
 # kitty terminal completion
 autoload -Uz compinit
 compinit
-#kitty + complete setup zsh | source /dev/stdin
+kitty + complete setup zsh | source /dev/stdin
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -110,4 +110,4 @@ alias cs-server="ssh -t mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+#[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
