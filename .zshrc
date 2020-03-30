@@ -92,7 +92,7 @@ fi
 # kitty terminal completion
 autoload -Uz compinit
 compinit
-kitty + complete setup zsh | source /dev/stdin
+#kitty + complete setup zsh | source /dev/stdin
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
