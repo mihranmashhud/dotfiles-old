@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DUNST_STATE_FILE=~/scripts/.dunst_state
+DUNST_STATE_FILE=/tmp/dunst_state
 DUNST_STATE=$(sed '1q;d' $DUNST_STATE_FILE)
 SNOOZE_TIME=$(sed '2q;d' $DUNST_STATE_FILE)
 
@@ -40,12 +40,7 @@ dunst_pause() {
 }
 
 toggle() {
-  if [[ $DUNST_STATE == "PAUSED" ]]
-  then
-    dunst_resume
-  else
-    dunst_pause 'NA'
-  fi
+  [[ $DUNST_STATE == "PAUSED" ]] && dunst_resume || dunst_pause 'NA'
 }
 
 delayed_resume() {
@@ -107,12 +102,7 @@ case $1 in
   "-t" | "--toggle" )
     toggle;;
   "-m" | "--menu" )
-    if [[ $DUNST_STATE == "PAUSED" ]]
-    then
-      snoozing_menu
-    else
-      start_snooze
-    fi;;
+    [[ $DUNST_STATE == "PAUSED" ]] && snoozing_menu || start_snooze;;
   *)
     show;;
 esac
