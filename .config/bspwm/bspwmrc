@@ -5,6 +5,7 @@ xsetroot -cursor_name left_ptr & # default cursor
 udiskie & # usb mounting
 sxhkd & # keybindings
 picom -bfc # compositor
+caffeine &
 bg=$(xgetres background)
 fg=$(xgetres foreground)
 dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -frame_color "$fg" &

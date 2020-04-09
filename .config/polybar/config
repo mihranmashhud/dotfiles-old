@@ -67,7 +67,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-2}
 modules-left = bspwm xwindow
 modules-center = date 
-modules-right = snooze bluetooth kdeconnect alsa wland ethd powermenu
+modules-right = caffeine snooze bluetooth kdeconnect alsa wland ethd powermenu
 
 [bar/mydesktopbar1]
 inherit = bar/mydesktopbar
@@ -82,6 +82,12 @@ inherit = bar/base
 modules-left = bspwm xwindow
 modules-center = xbacklight date alsa
 modules-right = snooze kdeconnect wlan eth battery0 battery1 powermenu
+
+[module/caffeine]
+type = custom/script
+exec = "~/scripts/caffeine-module show"
+label-font = 4
+interval = 1
 
 [module/snooze]
 type = custom/script
