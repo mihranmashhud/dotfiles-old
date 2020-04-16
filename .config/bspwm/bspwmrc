@@ -22,8 +22,7 @@ elif [[ $(hostname) == 'mihranDesktop' ]]; then
 fi
 
 # WALLPAPER (chosen randomly at startup)
-multilockscreen --update ~/Pictures/Backgrounds
-multilockscreen --wall
+~/scripts/random-wallpaper
 xss-lock -l -- multilockscreen --lock blur &
 
 # BSPWM configuration
