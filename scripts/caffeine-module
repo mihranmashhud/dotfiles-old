@@ -7,15 +7,14 @@ show() {
   [[ $CAFFEINE == "ON" ]] && echo "%{A1:~/scripts/caffeine-module toggle:}%{F$(xgetres foreground)} %{F-}%{A}" || echo %{A1:~/scripts/caffeine-module toggle:}%{F$(xgetres darkgrey)} %{F-}%{A}
 }
 
-activate="caffeine -a"
 
 toggle() {
   if [[ $CAFFEINE == "OFF" ]] 
   then
-    echo "ON" > ~/scripts/.CAFFEINE
+    echo "ON" > $CAFFEINE_STATE_FILE
     caffeine -a &
   else
-    echo "OFF" > ~/scripts/.CAFFEINE
+    echo "OFF" > $CAFFEINE_STATE_FILE
     caffeine kill
   fi
 }

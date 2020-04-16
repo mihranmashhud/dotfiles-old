@@ -1,4 +1,7 @@
 #! /usr/bin/env bash
-multilockscreen --update ~/Pictures/Backgrounds
+
+cd ~/Pictures/Backgrounds
+
+multilockscreen --update $(ls | shuf -n1)
 multilockscreen --wall
 dunstify "Wallpaper Updated!"

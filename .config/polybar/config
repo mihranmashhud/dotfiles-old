@@ -67,7 +67,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-2}
 modules-left = bspwm xwindow
 modules-center = date 
-modules-right = caffeine snooze bluetooth kdeconnect alsa wland ethd powermenu
+modules-right = caffeine snooze bluetooth kdeconnect alsa wland ethd tetheringd powermenu
 
 [bar/mydesktopbar1]
 inherit = bar/mydesktopbar
@@ -170,10 +170,6 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-[module/ethd]
-inherit = module/eth
-interface = enp3s0
-
 [module/eth]
 type = internal/network
 interface = enp0s25
@@ -189,6 +185,14 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/ethd]
+inherit = module/eth
+interface = enp3s0
+
+[module/tetheringd]
+inherit = module/eth
+interface = enp1s0f0u2
 
 [module/date]
 type = internal/date
