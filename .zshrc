@@ -106,7 +106,7 @@ alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/
 # rmtrash aliases
 alias rm='rmtrash --forbid-root'
 alias rmdir='rmdirtrash --forbid-root'
-alias cs-server="ssh -t mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
+alias cs-server="ssh -t -X -Y mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 

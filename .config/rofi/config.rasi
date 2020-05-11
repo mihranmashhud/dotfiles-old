@@ -29,7 +29,7 @@ configuration {
         sorting-method: "fzf";
         case-sensitive: false;
 /*	cycle: true;*/
-	sidebar-mode: true;
+	sidebar-mode: false;
 /*	eh: 1;*/
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
@@ -37,7 +37,7 @@ configuration {
 /*	combi-modi: "window,run";*/
         matching: "fuzzy";
 /*	tokenize: true;*/
-/*	m: "-5";*/
+        m: "-1";
 /*	line-margin: 2;*/
 /*	line-padding: 1;*/
 /*	filter: ;*/

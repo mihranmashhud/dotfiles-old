@@ -151,7 +151,7 @@ bar-empty-foreground = ${colors.foreground-alt}
 
 [module/wland]
 inherit = module/wlan
-interface = wlp1s0f0u9
+interface = wlp1s0f0u2
 
 [module/wlan]
 type = internal/network
