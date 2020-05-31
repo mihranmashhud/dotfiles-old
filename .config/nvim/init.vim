@@ -100,27 +100,30 @@ imap <C-z> <Esc>ui
 imap <C-a> <Esc>ggvG$
 " }}}
 " Netrw {{{
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
+let g:netrw_winsize = 25
 " }}}
 " Coc {{{
 nnoremap <leader> F :call CocAction('format')<CR>
 nmap <leader>qf  <Plug>(coc-fix-current)
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+ \ pumvisible() ? "\<C-n>" :
+ \ <SID>check_back_space() ? "\<TAB>" :
+ \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
-  \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+ \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+ let col = col('.') - 1
+ return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 function! CocCurrentFunction()
-  return get(b:, 'coc_current_function', '')
+ return get(b:, 'coc_current_function', '')
 endfunction
 
 " Coc Snippets
@@ -265,9 +268,9 @@ let g:lightline = {
   \ }
 set laststatus=2
 set noshowmode
-if (&term =~ '^xterm' && &t_Co == 256)
-  set t_ut= | set ttyscroll=1
-endif
+"if (&term =~ '^xterm' && &t_Co == 256)
+  "set t_ut= | set ttyscroll=1
+"endif
 " }}}
 " Writing (Pandoc + Markdown) {{{
 "   Word count:
@@ -288,16 +291,16 @@ syn match math '\$[^$].\{-}\$'
 hi link math Statement
 
 augroup lexical
-  autocmd!
-  autocmd Filetype markdown,mkd call lexical#init()
-                            \ | call pencil#init()
-                            \ | call litecorrect#init()
-  autocmd Filetype textile call lexical#init()
-                       \ | call pencil#init()
-                       \ | call litecorrect#init()
-  autocmd Filetype text call lexical#init({ 'spell', 0 })
-                    \ | call pencil#init()
-                    \ | call litecorrect#init()
+ autocmd!
+ autocmd Filetype markdown,mkd call lexical#init()
+                           \ | call pencil#init()
+                           \ | call litecorrect#init()
+ autocmd Filetype textile call lexical#init()
+                      \ | call pencil#init()
+                      \ | call litecorrect#init()
+ autocmd Filetype text call lexical#init({ 'spell', 0 })
+                   \ | call pencil#init()
+                   \ | call litecorrect#init()
 augroup END
 let g:lexical#spelllang = ['en_us','en_ca',]
 " }}}

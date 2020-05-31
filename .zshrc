@@ -107,7 +107,9 @@ alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/
 alias rm='rmtrash --forbid-root'
 alias rmdir='rmdirtrash --forbid-root'
 alias cs-server="ssh -t -X -Y mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
+alias mount-cs-server="sshfs mmashhud@linux.student.cs.uwaterloo.ca:/u6/mmashhud /mnt/cs-server"
+alias unmount-cs-server="umount /mnt/cs-server"
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.vim'
-
+#alias informant='informant --file=$HOME/.cache/informant'
 #[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"

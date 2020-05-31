@@ -50,7 +50,7 @@ super + Escape
 
 ## Quit/Restart bspwm
 super + shift + {q,r}
-  {~/scripts/close-bspwm, bspc wm -r}
+  {bspc quit, bspc wm -r}
 
 ## Close window or kill the process
 super + {_,shift + }w

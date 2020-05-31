@@ -4,7 +4,7 @@
 xsetroot -cursor_name left_ptr & # default cursor
 udiskie & # usb mounting
 sxhkd & # keybindings
-picom -bfc --vsync # compositor
+picom -bfc # compositor
 caffeine &
 bg=$(xgetres background)
 fg=$(xgetres foreground)
