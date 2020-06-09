@@ -7,7 +7,7 @@ Print
 
 ## Lock the screen
 alt + shift + x
-  multilockscreen -l blur
+  loginctl lock-session
 
 ## Lock the screen and suspend
 alt + shift + s
@@ -23,7 +23,7 @@ alt + r
 
 ## Let me choose another wallpaper
 alt + w
-  kitty ~/scripts/choose-wallpaper
+  ~/scripts/choose-wallpaper
 
 ## Open Wifi rofi menu
 alt + shift + w
@@ -35,7 +35,7 @@ super + v
 
 ## Open the terminal emulator
 super + Return
-  /usr/bin/kitty
+  /usr/bin/kitty -d "$(~/scripts/lastcwd)"
 
 ## Open the program launcher
 super + @space
@@ -44,7 +44,6 @@ super + @space
 ## Reload sxhkd config files
 super + Escape
   pkill -USR1 -x sxhkd
-
 
 ### Bspwm hotkeys ###
 

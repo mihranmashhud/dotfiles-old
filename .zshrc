@@ -42,7 +42,7 @@ ZSH_THEME="pi"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -76,6 +76,42 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# Vi mode enabling
+bindkey -v
+export KEYTIMEOUT=1
+
+# tab complete menu vim nav
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# More bindings
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins 'kj' vi-cmd-mode
+
+# Change cursor shape based on mode
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
@@ -107,9 +143,8 @@ alias config='/usr/bin/git --git-dir=/home/mihranmashhud/dotfiles/ --work-tree=/
 alias rm='rmtrash --forbid-root'
 alias rmdir='rmdirtrash --forbid-root'
 alias cs-server="ssh -t -X -Y mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
-alias mount-cs-server="sshfs mmashhud@linux.student.cs.uwaterloo.ca:/u6/mmashhud /mnt/cs-server"
-alias unmount-cs-server="umount /mnt/cs-server"
+#alias pull-cs-server="rsync -avzP mmashhud@linux.student.cs.uwaterloo.ca:./ /mnt/cs-server"
+#alias push-cs-server="rsync -avzP /mnt/cs-server/ mmashhud@linux.student.cs.uwaterloo.ca:."
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.vim'
-#alias informant='informant --file=$HOME/.cache/informant'
-#[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+alias sync-cs-server='~/scripts/push-cs-server && ~/scripts/pull-cs-server'

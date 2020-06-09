@@ -1,14 +1,19 @@
 #!/usr/bin/bash
 
-cd $HOME/Pictures/Backgrounds
-
-ranger --choosefile=chosenpic
-
-pic=$(cat chosenpic)
-
-rm -f chosenpic
-
-multilockscreen --update $pic
-multilockscreen --wall
-
-dunstify "Wallpaper Updated!"
+if [[ $(hostname) == 'mihranDesktop' ]]
+then
+  ~/scripts/set-video-wallpaper &
+else
+  cd $HOME/Pictures/Backgrounds
+  
+  kitty -- ranger --choosefile=chosenpic
+  
+  pic=$(cat chosenpic)
+  
+  rm -f chosenpic
+  
+  multilockscreen --update $pic
+  multilockscreen --wall
+  
+  dunstify "Wallpaper Updated!"
+fi

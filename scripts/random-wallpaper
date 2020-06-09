@@ -1,9 +1,14 @@
 #! /usr/bin/env bash
 
-ID=`dunstify -p "Changing Wallpaper..."`
-
-cd ~/Pictures/Backgrounds
-
-multilockscreen --update $(ls | shuf -n1)
-multilockscreen --wall
-dunstify -r $ID "Wallpaper Updated!"
+if [[ $(hostname) == 'mihranDesktop' ]]
+then
+  ~/scripts/set-video-wallpaper -r
+else
+  ID=`dunstify -p "Changing Wallpaper..."`
+  
+  cd ~/Pictures/Backgrounds
+  
+  multilockscreen --update $(ls | shuf -n1)
+  multilockscreen --wall
+  dunstify -r $ID "Wallpaper Updated!"
+fi
