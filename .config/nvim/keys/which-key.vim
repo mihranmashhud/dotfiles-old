@@ -20,12 +20,12 @@ highlight default link WhichKeyDesc      Function
 
 " Hide status line
 autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+autocmd  FileType which_key set laststatus=0 noshowmode noruleDCommenterToggleu
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmodDCommenterToggle
 
 
 " Single mappings
-let g:which_key_map['/'] = [ ':Commentary'  , 'comment' ]
+let g:which_key_map['/'] = [ '<plug>NERDCommenterToggle'  , 'comment' ]
 let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
@@ -37,6 +37,7 @@ let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['W'] = [ 'w'                          , 'write' ]
 let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
+let g:which_key_map[' '] = [':nohlsearch'                 , 'remove search highlight' ]
 
 " Group mappings
 
@@ -44,7 +45,7 @@ let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'e' : [':NerdTreeToggle'    , 'explorer'],
+      \ 'e' : [':NERDTreeToggle'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],

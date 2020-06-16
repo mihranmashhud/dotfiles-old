@@ -24,6 +24,7 @@ Plug 'mhinz/vim-startify'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'PProvost/vim-markdown-jekyll'
+Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -33,7 +34,6 @@ Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-pencil'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'

@@ -30,4 +30,6 @@ if !exists('g:vscode')
   set undofile                             " For time travel purposes
   set virtualedit=onemore                  " It feels better
   set modelines=1                          " For custom commands on a given buffer
+  filetype plugin on
 endif
+

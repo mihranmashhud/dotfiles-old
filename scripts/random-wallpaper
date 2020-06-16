@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-if [[ $(hostname) == 'mihranDesktop' ]]
+if [[ $(hostname) == '' ]]
 then
   ~/scripts/set-video-wallpaper -r
 else

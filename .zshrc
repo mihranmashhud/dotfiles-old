@@ -42,7 +42,7 @@ ZSH_THEME="pi"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -129,6 +129,7 @@ fi
 autoload -Uz compinit
 compinit
 kitty + complete setup zsh | source /dev/stdin
+_comp_options+=(globdots)
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

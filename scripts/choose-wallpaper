@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 
-if [[ $(hostname) == 'mihranDesktop' ]]
+if [[ $(hostname) == '' ]]
 then
   ~/scripts/set-video-wallpaper &
 else
   cd $HOME/Pictures/Backgrounds
   
-  kitty -- ranger --choosefile=chosenpic
+  kitty -- ranger --choosefile=chosenpic || exit 1
   
   pic=$(cat chosenpic)
   
