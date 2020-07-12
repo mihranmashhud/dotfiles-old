@@ -149,3 +149,5 @@ alias cs-server="ssh -t -X -Y mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
 alias vim='nvim'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias sync-cs-server='~/scripts/push-cs-server && ~/scripts/pull-cs-server'
+alias g++='g++ -std=c++14'
+alias zathura='~/scripts/devour zathura'

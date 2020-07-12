@@ -1,3 +1,8 @@
+" Leader
+let mapleader=' '
+" let localleader=','
+nnoremap <Space> <Nop>
+
 " Map leader to which_key
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
@@ -6,7 +11,7 @@ vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 let g:which_key_map =  {}
 " Define a separator
 let g:which_key_sep = '→'
-" set timeoutlen=100
+set timeoutlen=500
 
 
 " Not a fan of floating windows for this
@@ -20,8 +25,8 @@ highlight default link WhichKeyDesc      Function
 
 " Hide status line
 autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruleDCommenterToggleu
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmodDCommenterToggle
+autocmd  FileType which_key set laststatus=0
+  \| autocmd BufLeave <buffer> set laststatus=2
 
 
 " Single mappings
@@ -30,14 +35,14 @@ let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
 let g:which_key_map['c'] = [ ':Codi!!'                    , 'virtual repl']
-let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
 let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['W'] = [ 'w'                          , 'write' ]
-let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
-let g:which_key_map[' '] = [':nohlsearch'                 , 'remove search highlight' ]
+let g:which_key_map['z'] = [ 'Goyo'                       , 'zen mode' ]
+nnoremap <silent> <leader>h :noh<CR>
+let g:which_key_map['h'] = 'remove search highlight'
+let g:which_key_map[' '] = [ ''                           , 'exit' ]
 
 " Group mappings
 

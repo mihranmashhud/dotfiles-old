@@ -19,7 +19,7 @@ else
   source $HOME/.config/nvim/themes/lightline.vim
   " Plugin configs
   source $HOME/.config/nvim/plug-configs/coc.vim
-  source $HOME/.config/nvim/plug-configs/ale.vim
+  "source $HOME/.config/nvim/plug-configs/ale.vim
   source $HOME/.config/nvim/plug-configs/writing.vim
   source $HOME/.config/nvim/plug-configs/nerdtree.vim
   source $HOME/.config/nvim/plug-configs/indentline.vim

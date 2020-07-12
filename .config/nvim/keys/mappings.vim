@@ -1,8 +1,4 @@
 " Mappings for days
-" Leader
-let mapleader=" "
-" let localleader=" "
-nnoremap <Space> <Nop>
 
 " Indent and keep what was indented highlighted
 vnoremap < <gv
@@ -19,12 +15,15 @@ else
   " No need for hitting escape
   inoremap jk <Esc>
   inoremap kj <Esc>
+  tnoremap jk <Esc>
+  tnoremap kj <Esc>
+
 
   " Move through buffers using tab
   nnoremap <silent> <TAB> :bnext<CR>
   nnoremap <silent> <S-TAB> :bprevious<CR>
 
-  " Why press shift semicolon when you can press semicolon?
+  " Why press shift semicolon when you can just press semicolon?
   nnoremap ; :
   nnoremap : ;
 

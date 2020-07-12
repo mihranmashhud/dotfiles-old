@@ -4,7 +4,7 @@ Plug 'alx741/vim-stylishask'
 Plug 'arakashic/chromatica.nvim'
 Plug 'connorholyday/vim-snazzy'
 Plug 'conornewton/vim-pandoc-markdown-preview'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 Plug 'evanleck/vim-svelte'
 Plug 'godlygeek/tabular'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }

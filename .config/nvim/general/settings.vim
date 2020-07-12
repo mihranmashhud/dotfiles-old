@@ -20,6 +20,7 @@ if !exists('g:vscode')
   set whichwrap+=<,>,h,l,[,]               " Wrap that cursor around
   set nowrap                               " No wrapping Please
   set noshowmode                           " Lightline can handle that
+  set noruler                              " Lightline can also handle that
   set nobackup nowritebackup               " Coc recommends it so I listen
   set shortmess+=c                         " Those messages get pretty annoying
   set updatetime=300                       " Faster completion

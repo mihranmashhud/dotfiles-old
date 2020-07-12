@@ -20,6 +20,6 @@ augroup lexical
  autocmd!
  autocmd Filetype markdown,mkd call lexical#init() | call pencil#init() | call litecorrect#init()
  autocmd Filetype textile call lexical#init() | call pencil#init() | call litecorrect#init()
- autocmd Filetype text call lexical#init({ 'spell', 0 }) | call pencil#init() | call litecorrect#init()
+ "autocmd Filetype text call lexical#init({ 'spell': 0 }) | call pencil#init() | call litecorrect#init()
 augroup END
 let g:lexical#spelllang = ['en_us','en_ca',]
