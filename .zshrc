@@ -146,7 +146,7 @@ alias rmdir='rmdirtrash --forbid-root'
 alias cs-server="ssh -t -X -Y mmashhud@linux.student.cs.uwaterloo.ca 'zsh -l'"
 #alias pull-cs-server="rsync -avzP mmashhud@linux.student.cs.uwaterloo.ca:./ /mnt/cs-server"
 #alias push-cs-server="rsync -avzP /mnt/cs-server/ mmashhud@linux.student.cs.uwaterloo.ca:."
-alias vim='nvim'
+alias vim='nvim -p'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias sync-cs-server='~/scripts/push-cs-server && ~/scripts/pull-cs-server'
 alias g++='g++ -std=c++14'

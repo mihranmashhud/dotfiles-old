@@ -12,10 +12,10 @@ toggle() {
   if [[ $CAFFEINE == "OFF" ]] 
   then
     echo "ON" > $CAFFEINE_STATE_FILE
-    caffeine -a &
+    xset s off -dpms
   else
     echo "OFF" > $CAFFEINE_STATE_FILE
-    caffeine kill
+    xset s on dpms
   fi
 }
 

@@ -30,7 +30,9 @@ autocmd  FileType which_key set laststatus=0
 
 
 " Single mappings
-let g:which_key_map['/'] = [ '<plug>NERDCommenterToggle'  , 'comment' ]
+nmap <Leader>/ <plug>NERDCommenterToggle
+vmap <Leader>/ <plug>NERDCommenterToggle
+let g:which_key_map['/'] = 'comment'
 let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
