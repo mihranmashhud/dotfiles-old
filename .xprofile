@@ -17,3 +17,6 @@ export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 
 # Make QT theme consistent with GTK
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# Statusbar variable
+export STATUSBAR="polybar"
