@@ -16,11 +16,7 @@ export LESSHISTFILE="-"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 
 # Make QT theme consistent with GTK
-<<<<<<< HEAD
 export QT_QPA_PLATFORMTHEME="gtk2"
-=======
-export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Statusbar variable
 export STATUSBAR="polybar"
->>>>>>> 441416487bcd73d7fb380c4f29f0abe058afc5b9
