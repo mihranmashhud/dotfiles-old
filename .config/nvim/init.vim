@@ -13,10 +13,6 @@ source $HOME/.config/nvim/keys/which-key.vim
 
 if exists('g:vscode')
 else
-  " Theming
-  source $HOME/.config/nvim/themes/syntax.vim
-  source $HOME/.config/nvim/themes/snazzy.vim
-  source $HOME/.config/nvim/themes/lightline.vim
   " Plugin configs
   source $HOME/.config/nvim/plug-configs/coc.vim
   source $HOME/.config/nvim/plug-configs/headerguard.vim
@@ -24,6 +20,13 @@ else
   source $HOME/.config/nvim/plug-configs/nerdtree.vim
   source $HOME/.config/nvim/plug-configs/indentline.vim
   source $HOME/.config/nvim/plug-configs/netrw.vim
+  source $HOME/.config/nvim/plug-configs/vim-svelte-plugin.vim
+  source $HOME/.config/nvim/plug-configs/highlightedyank.vim
+  " Theming
+  source $HOME/.config/nvim/themes/syntax.vim
+  source $HOME/.config/nvim/themes/snazzy.vim
+  source $HOME/.config/nvim/themes/lightline.vim
+  source $HOME/.config/nvim/themes/overrides.vim
 endif
 
 

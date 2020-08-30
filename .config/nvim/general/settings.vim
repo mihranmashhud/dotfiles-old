@@ -1,6 +1,7 @@
 set iskeyword+=- " Dash seperated words are a text object
 
-if !exists('g:vscode')
+if exists('g:vscode')
+else
   syntax enable                            " Syntax on of course
   set hidden                               " Abondoning a buffer does not unload it
   set encoding=utf-8                       " Use UTF-8 encoding
@@ -32,6 +33,7 @@ if !exists('g:vscode')
   set virtualedit=onemore                  " It feels better
   set modelines=1                          " For custom commands on a given buffer
   set autoread                             " Autoread file changes
+  set signcolumn=auto:4                    " Gutter is always visible
+  set fcs=eob:\                            " Remove ~ in end of buffer
   filetype plugin on
 endif
-
