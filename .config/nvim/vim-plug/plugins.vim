@@ -9,6 +9,7 @@ Plug 'drmikehenry/vim-headerguard'
 Plug 'evanleck/vim-svelte'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
