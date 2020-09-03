@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'alx741/vim-stylishask'
@@ -6,7 +6,7 @@ Plug 'arakashic/chromatica.nvim'
 Plug 'connorholyday/vim-snazzy'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'drmikehenry/vim-headerguard'
-Plug 'evanleck/vim-svelte'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
