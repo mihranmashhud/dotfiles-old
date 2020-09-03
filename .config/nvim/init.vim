@@ -22,6 +22,8 @@ else
   source $HOME/.config/nvim/plug-configs/netrw.vim
   source $HOME/.config/nvim/plug-configs/vim-svelte-plugin.vim
   source $HOME/.config/nvim/plug-configs/highlightedyank.vim
+  source $HOME/.config/nvim/plug-configs/start-screen.vim
+  source $HOME/.config/nvim/plug-configs/gitgutter.vim
   " Theming
   source $HOME/.config/nvim/themes/syntax.vim
   source $HOME/.config/nvim/themes/snazzy.vim
