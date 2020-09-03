@@ -30,7 +30,7 @@ alt + shift + w
   ~/scripts/networkmanager_dmenu
 
 ## Open The Vivaldi browser
-super + v
+super + b
   /usr/bin/vivaldi-stable
 
 ## Open the terminal emulator
