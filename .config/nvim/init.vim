@@ -11,7 +11,17 @@ source $HOME/.config/nvim/general/functions.vim
 source $HOME/.config/nvim/keys/mappings.vim
 source $HOME/.config/nvim/keys/which-key.vim
 
-if exists('g:vscode')
+if exists('g:started_by_firenvim')
+  source $HOME/.config/nvim/firenvim/settings.vim
+  source $HOME/.config/nvim/plug-configs/coc.vim
+  source $HOME/.config/nvim/plug-configs/highlightedyank.vim
+  source $HOME/.config/nvim/plug-configs/writing.vim
+  " Theming
+  source $HOME/.config/nvim/themes/syntax.vim
+  source $HOME/.config/nvim/themes/snazzy.vim
+  source $HOME/.config/nvim/firenvim/lightline.vim
+  source $HOME/.config/nvim/themes/overrides.vim
+elseif exists('g:vscode')
 else
   " Plugin configs
   source $HOME/.config/nvim/plug-configs/coc.vim

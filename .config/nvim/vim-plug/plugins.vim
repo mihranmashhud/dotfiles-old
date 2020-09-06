@@ -7,6 +7,7 @@ Plug 'connorholyday/vim-snazzy'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'drmikehenry/vim-headerguard'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -30,7 +31,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'PProvost/vim-markdown-jekyll'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-pencil'
