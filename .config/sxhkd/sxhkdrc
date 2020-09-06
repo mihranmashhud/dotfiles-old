@@ -1,9 +1,14 @@
 
 ### WM Independent Hotkeys ###
 
-## Print Screen
-Print
-  maim ~/Pictures/Screenshots/$(date +%s).png && dunstify "Screen Captured"
+## Capture Active Window
+Print; Print
+  maim -i $(xdotool getactivewindow) ~/Pictures/Screenshots/$(date +%F_%T).png \
+  && dunstify "Window Captured: $(xdotool getwindowname $(xdotool getactivewindow))"
+
+## Capture selection box
+Print; g
+  flameshot gui
 
 ## Lock the screen
 alt + shift + x
@@ -29,7 +34,7 @@ alt + w
 alt + shift + w
   ~/scripts/networkmanager_dmenu
 
-## Open The Vivaldi browser
+## Open browser
 super + b
   /usr/bin/vivaldi-stable
 
