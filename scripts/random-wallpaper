@@ -1,12 +1,15 @@
 #! /usr/bin/env bash
 
-if [[ $(hostname) == '' ]]
+BACKGROUND_DIR="$HOME/Pictures/Backgrounds"
+
+if [[ $(hostname) == 'mihranDesktop' ]]
 then
-  ~/scripts/set-video-wallpaper -r
+  cd $BACKGROUND_DIR
+  feh --no-fehbg --bg-fill $(ls | shuf -n1)
 else
   ID=`dunstify -p "Changing Wallpaper..."`
   
-  cd ~/Pictures/Backgrounds
+  cd $BACKGROUND_DIR
   
   multilockscreen --update $(ls | shuf -n1)
   multilockscreen --wall

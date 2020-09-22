@@ -1,0 +1,14 @@
+#! /usr/bin/bash
+
+LOGFILE=/tmp/postgresql_server.log
+
+DATADIR=/usr/local/pgsql/data
+VARDIR=/run/postgresql
+
+kill -INT `head -1 /usr/local/pgsql/data/postmaster.pid`
+sudo rm -rf $DATADIR
+sudo mkdir $VARDIR
+sudo chown -R postgres:postgres $VARDIR
+sudo su postgres -c "pg_ctl -D $DATADIR initdb"
+sudo su postgres -c "pg_ctl -D $DATADIR -l $LOGFILE start"
+sudo su postgres -c "createuser pgsqluser"
