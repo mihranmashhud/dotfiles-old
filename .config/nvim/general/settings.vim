@@ -1,8 +1,7 @@
-set iskeyword+=- " Dash seperated words are a text object
 
-if exists('g:vscode')
-else
+if !exists('g:vscode')
   syntax enable                            " Syntax on of course
+  set iskeyword+=- " Dash seperated words are a text object
   set hidden                               " Abondoning a buffer does not unload it
   set encoding=utf-8                       " Use UTF-8 encoding
   set fileencoding=utf-8                   " UTF-8 encoding written to file

@@ -1,5 +1,12 @@
 " Always have these plugins installed
-let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-prettier', 'coc-json']
+let g:coc_global_extensions = [
+      \   'coc-snippets', 
+      \   'coc-tsserver', 
+      \   'coc-vimlsp', 
+      \   'coc-prettier', 
+      \   'coc-json',
+      \   'coc-python'
+      \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -78,5 +85,3 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-

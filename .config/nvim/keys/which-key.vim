@@ -43,7 +43,7 @@ let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['z'] = [ 'Goyo'                       , 'zen mode' ]
 nnoremap <silent> <leader>h :noh<CR>
-let g:which_key_map['h'] = 'remove search highlight'
+let g:which_key_map['n'] = 'remove search highlight'
 let g:which_key_map[' '] = [ ''                           , 'exit' ]
 
 " Group mappings
@@ -51,14 +51,14 @@ let g:which_key_map[' '] = [ ''                           , 'exit' ]
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
-      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'e' : [':NERDTreeToggle'    , 'explorer'],
-      \ 'n' : [':set nonumber!'          , 'line-numbers'],
-      \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
-      \ 's' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ 'v' : [':TagbarToggle'                , 'tag viewer'],
-      \ 'u' : [':UndotreeToggle'         , 'undo tree']
+      \ 'c' : [':ColorizerToggle'                  , 'colorizer']               ,
+      \ 'e' : [':Fern . -drawer -reveal=% -toggle' , 'explorer']                ,
+      \ 'n' : [':set nonumber!'                    , 'line-numbers']            ,
+      \ 'r' : [':set norelativenumber!'            , 'relative line nums']      ,
+      \ 's' : [':let @/ = ""'                      , 'remove search highlight'] ,
+      \ 't' : [':FloatermToggle'                   , 'terminal']                ,
+      \ 'v' : [':TagbarToggle'                     , 'tag viewer']              ,
+      \ 'u' : [':UndotreeToggle'                   , 'undo tree']
       \ }
 
 " b is for buffer
