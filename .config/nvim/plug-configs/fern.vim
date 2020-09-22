@@ -13,7 +13,9 @@ augroup FernGroup
   autocmd FileType fern call FernInit()
 augroup END
 
-" Use NerdFont for rendering
+autocmd  FileType fern set laststatus=0
+  \| autocmd BufLeave <buffer> set laststatus=2
 
+" Use NerdFont for rendering
 let g:fern#renderer = "nerdfont"
 
