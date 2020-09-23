@@ -16,9 +16,9 @@ show() {
   fi
   if [[ $DUNST_STATE == "PAUSED" ]]
   then
-    output="%{F$COLOR_ON}%{F-}"
+    output="%{F$COLOR_ON}ﮖ %{F-}"
   else
-    output="%{F$COLOR_OFF}%{F-}"
+    output="%{F$COLOR_OFF}ﮖ %{F-}"
   fi
   if [[ $SNOOZE_TIME != 'NA' ]]
   then
