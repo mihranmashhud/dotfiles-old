@@ -16,10 +16,10 @@ if [[ $(hostname) == 'mihranLaptop' ]]; then
   #conky -c ~/.config/conky/thinkpadIMG.conf &
   #conky &
   bspc monitor $(bspc query --monitors | head) -d 0 1 2 3 4 5 6 7 8 9
-  # Blurred Lockscreen
-  xss-lock -l -- multilockscreen --lock blur &
   # WALLPAPER (chosen randomly at startup)
   ~/scripts/random-wallpaper
+  # LightDM Lockscreen
+  light-locker --lock-on-suspend &
 elif [[ $(hostname) == 'mihranDesktop' ]]; then
   bspc monitor HDMI-A-0 -d 0 1 2 3 4
   bspc monitor DVI-D-0 -d 5 6 7 8 9
