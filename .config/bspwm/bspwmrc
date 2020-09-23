@@ -13,9 +13,9 @@ $HOME/.config/polybar/launch.sh # polybar
 
 # MONITOR
 if [[ $(hostname) == 'mihranLaptop' ]]; then
-  conky -c ~/.config/conky/thinkpadIMG.conf &
-  conky &
-  bspc monitor eDP1 -d 0 1 2 3 4 5 6 7 8 9
+  #conky -c ~/.config/conky/thinkpadIMG.conf &
+  #conky &
+  bspc monitor $(bspc query --monitors | head) -d 0 1 2 3 4 5 6 7 8 9
   # Blurred Lockscreen
   xss-lock -l -- multilockscreen --lock blur &
   # WALLPAPER (chosen randomly at startup)

@@ -1,14 +1,6 @@
 #! /usr/bin/env bash
 
-if [[ $(hostname) == '' ]]
-then
-  ~/scripts/set-video-wallpaper -r
-else
-  ID=`dunstify -p "Changing Wallpaper..."`
-  
-  cd ~/Pictures/Backgrounds
-  
-  multilockscreen --update $(ls | shuf -n1)
-  multilockscreen --wall
-  dunstify -r $ID "Wallpaper Updated!"
-fi
+BACKGROUND_DIR="$HOME/Pictures/Backgrounds"
+
+cd $BACKGROUND_DIR
+feh --no-fehbg --bg-fill $(ls | shuf -n1)
