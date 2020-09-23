@@ -2,16 +2,5 @@
 
 BACKGROUND_DIR="$HOME/Pictures/Backgrounds"
 
-if [[ $(hostname) == 'mihranDesktop' ]]
-then
-  cd $BACKGROUND_DIR
-  feh --no-fehbg --bg-fill $(ls | shuf -n1)
-else
-  ID=`dunstify -p "Changing Wallpaper..."`
-  
-  cd $BACKGROUND_DIR
-  
-  multilockscreen --update $(ls | shuf -n1)
-  multilockscreen --wall
-  dunstify -r $ID "Wallpaper Updated!"
-fi
+cd $BACKGROUND_DIR
+feh --no-fehbg --bg-fill $(ls | shuf -n1)
