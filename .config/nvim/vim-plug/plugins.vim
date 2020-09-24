@@ -29,6 +29,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'mattly/vim-markdown-enhancements'
@@ -50,6 +51,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
+Plug 'vim-scripts/BufOnly.vim'
 Plug 'yuttie/comfortable-motion.vim'
 
 call plug#end()
