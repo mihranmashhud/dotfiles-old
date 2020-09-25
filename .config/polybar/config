@@ -228,7 +228,7 @@ interval = 1.0
 time =  %I:%M %p
 time-alt =  %H:%M:%S
 date =
-date-alt =  %Y-%m-%d
+date-alt =  %Y-%m-%d
 
 label = %date% %time%
 
@@ -237,7 +237,7 @@ type = internal/alsa
 
 format-volume = <bar-volume>
 
-format-muted-prefix = " "
+format-muted-prefix = "ﱝ "
 format-muted-foreground = ${colors.darkgrey}
 label-muted = sound muted
 
@@ -277,7 +277,6 @@ format-charging-padding = 1
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-padding = 1
 
-label-charging = +%percentage%%
 label-discharging = %percentage%%
 
 label-full = " FULL"
@@ -299,7 +298,7 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-framerate = 750
+animation-charging-framerate = 600
 
 [module/battery0]
 inherit = module/battery
