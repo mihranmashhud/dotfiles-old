@@ -1,6 +1,10 @@
 # Theme
-ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:lib/git.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
 tobyjamesthomas/pi kind:zsh
+
+# Completion
+ohmyzsh/ohmyzsh path:lib/completion.zsh
 
 # Plugins
 ohmyzsh/ohmyzsh path:plugins/gitfast
