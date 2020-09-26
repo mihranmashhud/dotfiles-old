@@ -5,6 +5,17 @@
 autoload -Uz compinit
 compinit
 
+# Plugin configuration
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC="ON"
+
+# SET HIST
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Module load
+zmodload zsh/zpty
+
 # Statically load plugins
 source $HOME/.config/zsh/plugins.sh
 
