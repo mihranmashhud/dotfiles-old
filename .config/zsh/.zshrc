@@ -87,3 +87,5 @@ alias sync-cs-server='~/scripts/push-cs-server && ~/scripts/pull-cs-server'
 alias vim='nvim -p'
 # Zathura should 'devour' the terminal
 alias zathura='~/scripts/devour zathura'
+# Docker Compose
+alias docker-compose='sudo docker-compose'

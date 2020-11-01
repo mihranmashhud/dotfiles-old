@@ -1,6 +1,7 @@
 ;==========================================================
 ;
 ;
+;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
 ;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
 ;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
@@ -76,7 +77,7 @@ inherit = bar/base
 monitor = ${env:MONITOR:HDMI-A-0}
 modules-left = bspwm xwindow
 modules-center = date 
-modules-right = tray-toggle caffeine snooze bluetooth kdeconnect alsa wland ethd tetheringd powermenu
+modules-right = tray-toggle caffeine snooze kdeconnect alsa wland ethd tetheringd powermenu
 
 [bar/mydesktopbar1]
 inherit = bar/mydesktopbar
@@ -191,7 +192,7 @@ ramp-signal-font = 2
 
 [module/wland]
 inherit = module/wlan
-interface = wlp1s0f0u9
+interface = wlp9s0f3u2
 
 [module/wlan1]
 inherit = module/wlan
