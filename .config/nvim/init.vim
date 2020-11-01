@@ -16,9 +16,8 @@ if exists('g:started_by_firenvim')
   source $HOME/.config/nvim/plug-configs/writing.vim
   " Theming
   source $HOME/.config/nvim/themes/syntax.vim
-  source $HOME/.config/nvim/themes/snazzy.vim
+  source $HOME/.config/nvim/themes/theme.vim
   source $HOME/.config/nvim/firenvim/lightline.vim
-  source $HOME/.config/nvim/themes/overrides.vim
 elseif exists('g:vscode')
   source $HOME/.config/nvim/vscode/settings.vim
   source $HOME/.config/nvim/vscode/mappings.vim
@@ -41,9 +40,8 @@ else
   source $HOME/.config/nvim/plug-configs/polyglot.vim
   " Theming
   source $HOME/.config/nvim/themes/syntax.vim
-  source $HOME/.config/nvim/themes/snazzy.vim
+  source $HOME/.config/nvim/themes/theme.vim
   source $HOME/.config/nvim/themes/lightline.vim
-  source $HOME/.config/nvim/themes/overrides.vim
 endif
 
 

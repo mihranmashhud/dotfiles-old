@@ -8,11 +8,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alx741/vim-stylishask'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'arakashic/chromatica.nvim'
-Plug 'connorholyday/vim-snazzy'
 Plug 'conornewton/vim-pandoc-markdown-preview'
 Plug 'drmikehenry/vim-headerguard'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'frazrepo/vim-rainbow'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'

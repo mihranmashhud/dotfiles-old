@@ -1,6 +1,6 @@
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'snazzy',
+      \ 'colorscheme': 'tokyonight',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction','gitbranch' ,'readonly', 'filename'] ],
