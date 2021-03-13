@@ -7,7 +7,7 @@ case "$1" in
     echo $(qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" "org.kde.kdeconnect.device.$1");;
   
   charge|isCharging)
-    echo $(qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" "org.kde.kdeconnect.device.battery.$1");;
+    echo $(qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2/battery" "org.kde.kdeconnect.device.battery.$1");;
     
   ping)
     qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2/ping" org.kde.kdeconnect.device.ping.sendPing;;
