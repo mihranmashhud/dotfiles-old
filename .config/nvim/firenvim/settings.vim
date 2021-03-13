@@ -16,13 +16,10 @@ let g:firenvim_config = {
 
 let fc = g:firenvim_config['localSettings']
 
-let fc['codewars.com'] = { 'takeover': 'always', 'priority': 1 }
-let fc['reddit.com'] = { 'takeover': 'always', 'priority': 1 }
-let fc['github.com'] = { 'takeover': 'always', 'priority': 1 }
-
 au BufEnter reddit.com_*.txt set filetype=markdown
 au BufEnter github.com_*.txt set filetype=markdown
 au BufEnter codewars.com_*.txt set filetype=javascript
+au BufEnter localhost:1234*.txt set filetype=julia
 
 let g:dont_write = v:false
 function! My_Write(timer) abort

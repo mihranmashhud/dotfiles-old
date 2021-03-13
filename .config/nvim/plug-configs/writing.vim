@@ -8,18 +8,15 @@ let g:md_args="--filter pandoc-citeproc -V --template eisvogel --listings"
 "autocmd BufRead,BufNewFile *.Rmd setlocal spell
 autocmd BufNewfile,BufRead *.Rmd set filetype=markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-" This gets rid of the nasty _ italic bug in tpope's vim-markdown
-" block $$...$$
-syn region math start=/\$\$/ end=/\$\$/
-" inline math
-syn match math '\$[^$].\{-}\$'
-" actually highlight the region we defined as "math"
-hi link math Statement
 
 augroup lexical
  autocmd!
- autocmd Filetype markdown,mkd call lexical#init() | call pencil#init() | call litecorrect#init()
+ autocmd Filetype markdown,mkd,pandoc call lexical#init() | call pencil#init() | call litecorrect#init()
  autocmd Filetype textile call lexical#init() | call pencil#init() | call litecorrect#init()
  "autocmd Filetype text call lexical#init({ 'spell': 0 }) | call pencil#init() | call litecorrect#init()
 augroup END
-let g:lexical#spelllang = ['en_us','en_ca',]
+let g:lexical#spelllang = ['en_us', 'en_ca',]
+
+" Pencil defaults
+let g:pencil#conceallevel = 1
+let g:pencil#textwidth = 80

@@ -1,7 +1,6 @@
-
 if !exists('g:vscode')
   syntax enable                            " Syntax on of course
-  set iskeyword+=- " Dash seperated words are a text object
+  set iskeyword+=-                         " Dash seperated words are a text object
   set hidden                               " Abondoning a buffer does not unload it
   set encoding=utf-8                       " Use UTF-8 encoding
   set fileencoding=utf-8                   " UTF-8 encoding written to file
@@ -34,5 +33,7 @@ if !exists('g:vscode')
   set autoread                             " Autoread file changes
   set signcolumn=auto:4                    " Gutter is always visible
   set fcs=eob:\                            " Remove ~ in end of buffer
-  filetype plugin on
+  set foldlevel=99                         " No folds from the start
+  set scrolloff=8                          " Keep 8 lines above and below the cursor
+  filetype plugin on                       " Plugins per filetype
 endif

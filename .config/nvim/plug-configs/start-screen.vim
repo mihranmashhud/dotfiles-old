@@ -10,8 +10,9 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
       \ { 'i': '~/.config/nvim/init.vim' },
       \ { 'b': '~/.config/bspwm/bspwmrc' },
-      \ { 'z': '~/.zshrc' },
-      \ { 'p': '~/.config/polybar/config' }
+      \ { 'z': '~/.config/zsh/.zshrc' },
+      \ { 'p': '~/.config/polybar/config' },
+      \ { 's': '~/.config/sxhkd/sxhkdrc' }
       \ ]
 
 let g:startify_custom_header = [

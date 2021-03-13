@@ -11,33 +11,41 @@ source $HOME/.config/nvim/general/functions.vim
 
 if exists('g:started_by_firenvim')
   source $HOME/.config/nvim/firenvim/settings.vim
+  source $HOME/.config/nvim/keys/mappings.vim
+  source $HOME/.config/nvim/keys/which-key.vim
   source $HOME/.config/nvim/plug-configs/coc.vim
+  source $HOME/.config/nvim/plug-configs/indentline.vim
+  source $HOME/.config/nvim/plug-configs/nerdcommenter.vim
   source $HOME/.config/nvim/plug-configs/highlightedyank.vim
   source $HOME/.config/nvim/plug-configs/writing.vim
+  source $HOME/.config/nvim/plug-configs/nvim-treesitter.vim
   " Theming
   source $HOME/.config/nvim/themes/syntax.vim
   source $HOME/.config/nvim/themes/theme.vim
   source $HOME/.config/nvim/firenvim/lightline.vim
+  source $HOME/.config/nvim/plug-configs/rainbow.vim
 elseif exists('g:vscode')
   source $HOME/.config/nvim/vscode/settings.vim
   source $HOME/.config/nvim/vscode/mappings.vim
 else
-  " Plugin configs
+  " Keys
   source $HOME/.config/nvim/keys/mappings.vim
   source $HOME/.config/nvim/keys/which-key.vim
+  " Plugin configs
   source $HOME/.config/nvim/plug-configs/coc.vim
   source $HOME/.config/nvim/plug-configs/headerguard.vim
   source $HOME/.config/nvim/plug-configs/writing.vim
   source $HOME/.config/nvim/plug-configs/fern.vim
-  "source $HOME/.config/nvim/plug-configs/nerdtree.vim
   source $HOME/.config/nvim/plug-configs/indentline.vim
-  source $HOME/.config/nvim/plug-configs/netrw.vim
+  source $HOME/.config/nvim/plug-configs/nerdcommenter.vim
   source $HOME/.config/nvim/plug-configs/vim-svelte-plugin.vim
   source $HOME/.config/nvim/plug-configs/highlightedyank.vim
   source $HOME/.config/nvim/plug-configs/start-screen.vim
   source $HOME/.config/nvim/plug-configs/gitgutter.vim
   source $HOME/.config/nvim/plug-configs/rainbow.vim
   source $HOME/.config/nvim/plug-configs/polyglot.vim
+  source $HOME/.config/nvim/plug-configs/nvim-treesitter.vim
+  source $HOME/.config/nvim/plug-configs/latex-unicoder.vim
   " Theming
   source $HOME/.config/nvim/themes/syntax.vim
   source $HOME/.config/nvim/themes/theme.vim

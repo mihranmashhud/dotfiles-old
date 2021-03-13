@@ -15,5 +15,39 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
-  "diagnostic.level": "hint"
+  "diagnostic.level": "hint",
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": ["autopep8", "isort"]
+  },
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "suggest.completionItemKindLabels": {
+    "method": "  ",
+    "function": "  ",
+    "variable": "[]",
+    "field": "  ",
+    "typeParameter": "<>",
+    "constant": "  ",
+    "class": " פּ ",
+    "interface": " 蘒",
+    "struct": "  ",
+    "event": "  ",
+    "operator": "  ",
+    "module": "  ",
+    "property": "  ",
+    "enum": " 練",
+    "reference": "  ",
+    "keyword": "  ",
+    "file": "  ",
+    "folder": "  ",
+    "color": "  ",
+    "unit": " 塞 ",
+    "snippet": "  ",
+    "text": "  ",
+    "constructor": "  ",
+    "value": "  ",
+    "enumMember": "  "
+  }
 }

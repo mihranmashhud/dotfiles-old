@@ -1,11 +1,12 @@
 " Always have these plugins installed
 let g:coc_global_extensions = [
-      \   'coc-snippets', 
       \   'coc-tsserver', 
       \   'coc-vimlsp', 
       \   'coc-prettier', 
       \   'coc-json',
-      \   'coc-python'
+      \   'coc-jedi',
+      \   'coc-julia',
+      \   'coc-diagnostic'
       \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -71,8 +72,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-s> for trigger snippet expand.
+imap <C-s> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)

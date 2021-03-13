@@ -33,17 +33,17 @@ autocmd  FileType which_key set laststatus=0
 nmap <Leader>/ <plug>NERDCommenterToggle
 vmap <Leader>/ <plug>NERDCommenterToggle
 let g:which_key_map['/'] = 'comment'
-let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
-let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
-let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
-let g:which_key_map['c'] = [ ':Codi!!'                    , 'virtual repl']
-let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
-let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['z'] = [ 'Goyo'                       , 'zen mode' ]
+let g:which_key_map[';'] = [ ':Commands'    , 'commands' ]
+let g:which_key_map['='] = [ '<C-W>='       , 'balance windows' ]
+let g:which_key_map[','] = [ 'Startify'     , 'start screen' ]
+let g:which_key_map['c'] = [ ':Codi!!'      , 'virtual repl']
+let g:which_key_map['f'] = [ ':Files'       , 'search files' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle', 'ranger' ]
+let g:which_key_map['S'] = [ ':SSave'       , 'save session' ]
+let g:which_key_map['T'] = [ ':Rg'          , 'search text' ]
+let g:which_key_map['z'] = [ 'Goyo'         , 'zen mode' ]
 nnoremap <silent> <leader>h :noh<CR>
-let g:which_key_map['n'] = 'remove search highlight'
+let g:which_key_map['h'] = 'remove search highlight'
 let g:which_key_map[' '] = [ ''                           , 'exit' ]
 
 " Group mappings
@@ -51,15 +51,20 @@ let g:which_key_map[' '] = [ ''                           , 'exit' ]
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
-      \ 'c' : [':ColorizerToggle'                  , 'colorizer']               ,
-      \ 'e' : [':Fern . -drawer -reveal=% -toggle' , 'explorer']                ,
-      \ 'n' : [':set nonumber!'                    , 'line-numbers']            ,
-      \ 'r' : [':set norelativenumber!'            , 'relative line nums']      ,
-      \ 's' : [':let @/ = ""'                      , 'remove search highlight'] ,
-      \ 't' : [':FloatermToggle'                   , 'terminal']                ,
-      \ 'v' : [':TagbarToggle'                     , 'tag viewer']              ,
-      \ 'u' : [':UndotreeToggle'                   , 'undo tree']
+      \ 'c' : [':ColorizerToggle'                 , 'colorizer']              ,
+      \ 'e' : [':Fern . -drawer -reveal=% -toggle', 'explorer']               ,
+      \ 'n' : [':set nonumber!'                   , 'line-numbers']           ,
+      \ 'r' : [':set norelativenumber!'           , 'relative line nums']     ,
+      \ 's' : [':let @/ = ""'                     , 'remove search highlight'],
+      \ 't' : [':FloatermToggle'                  , 'terminal']               ,
+      \ 'u' : [':UndotreeToggle'                  , 'undo tree']              ,
+      \ 'v' : [':TagbarToggle'                    , 'tag viewer']
       \ }
+let g:which_key_map['a']['l'] = 'LaTeX->Unicode'
+nnoremap <silent> <leader>al :call unicoder#start(0)<CR>
+vnoremap <silent> <leader>al :<C-u>call unicoder#selection()<CR>
+
+autocmd FileType markdown,mkd,pandoc,textile,latex let g:which_key_map.a['p'] = ['TogglePencil', 'Pencil Toggle']
 
 " b is for buffer
 let g:which_key_map.b = {
