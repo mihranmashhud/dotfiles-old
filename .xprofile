@@ -3,8 +3,9 @@ export PATH="$PATH:$HOME/.local/bin"
 # Defaults
 export SUDO_EDITOR="/usr/bin/nvim"
 export EDITOR="/usr/bin/nvim"
+export VISUAL="/usr/bin/nvim"
 export TERMINAL="/usr/bin/kitty"
-export BROWSER="/usr/bin/vivaldi-stable"
+export BROWSER="/usr/bin/firefox"
 export READER="/usr/bin/zathura"
 
 # Keep that ~ tidy
@@ -20,3 +21,6 @@ export QT_QPA_PLATFORMTHEME="gtk2"
 
 # Statusbar variable
 export STATUSBAR="polybar"
+
+# Wine
+export WINEUSERNAME="mihranmashhud"
