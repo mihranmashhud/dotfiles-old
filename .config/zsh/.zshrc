@@ -89,3 +89,5 @@ alias vim='nvim -p'
 alias zathura='~/scripts/devour zathura'
 # Docker Compose
 alias docker-compose='sudo docker-compose'
+# Alias yay to paru
+alias yay='paru'
