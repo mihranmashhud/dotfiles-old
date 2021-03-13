@@ -1,1 +1,6 @@
 dotfiles
+.config/nvim/.*
+.config/nvim/spell
+.config/nvim/syntax
+.config/nvim/after/syntax
+*.old
