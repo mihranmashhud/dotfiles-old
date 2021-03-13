@@ -5,51 +5,51 @@
 
 
 " Sourced by default
-source $HOME/.config/nvim/vim-plug/plugins.vim
-source $HOME/.config/nvim/general/settings.vim
-source $HOME/.config/nvim/general/functions.vim
+source ~/.config/nvim/vim-plug/plugins.vim
+source ~/.config/nvim/general/settings.vim
+source ~/.config/nvim/general/functions.vim
 
 if exists('g:started_by_firenvim')
-  source $HOME/.config/nvim/firenvim/settings.vim
-  source $HOME/.config/nvim/keys/mappings.vim
-  source $HOME/.config/nvim/keys/which-key.vim
-  source $HOME/.config/nvim/plug-configs/coc.vim
-  source $HOME/.config/nvim/plug-configs/indentline.vim
-  source $HOME/.config/nvim/plug-configs/nerdcommenter.vim
-  source $HOME/.config/nvim/plug-configs/highlightedyank.vim
-  source $HOME/.config/nvim/plug-configs/writing.vim
-  source $HOME/.config/nvim/plug-configs/nvim-treesitter.vim
+  source ~/.config/nvim/firenvim/settings.vim
+  source ~/.config/nvim/keys/mappings.vim
+  source ~/.config/nvim/keys/which-key.vim
+  source ~/.config/nvim/plug-configs/coc.vim
+  source ~/.config/nvim/plug-configs/indentline.vim
+  source ~/.config/nvim/plug-configs/nerdcommenter.vim
+  source ~/.config/nvim/plug-configs/highlightedyank.vim
+  source ~/.config/nvim/plug-configs/writing.vim
+  source ~/.config/nvim/plug-configs/nvim-treesitter.vim
   " Theming
-  source $HOME/.config/nvim/themes/syntax.vim
-  source $HOME/.config/nvim/themes/theme.vim
-  source $HOME/.config/nvim/firenvim/lightline.vim
-  source $HOME/.config/nvim/plug-configs/rainbow.vim
+  source ~/.config/nvim/themes/syntax.vim
+  source ~/.config/nvim/themes/theme.vim
+  source ~/.config/nvim/firenvim/lightline.vim
+  source ~/.config/nvim/plug-configs/rainbow.vim
 elseif exists('g:vscode')
-  source $HOME/.config/nvim/vscode/settings.vim
-  source $HOME/.config/nvim/vscode/mappings.vim
+  source ~/.config/nvim/vscode/settings.vim
+  source ~/.config/nvim/vscode/mappings.vim
 else
   " Keys
-  source $HOME/.config/nvim/keys/mappings.vim
-  source $HOME/.config/nvim/keys/which-key.vim
+  source ~/.config/nvim/keys/mappings.vim
+  source ~/.config/nvim/keys/which-key.vim
   " Plugin configs
-  source $HOME/.config/nvim/plug-configs/coc.vim
-  source $HOME/.config/nvim/plug-configs/headerguard.vim
-  source $HOME/.config/nvim/plug-configs/writing.vim
-  source $HOME/.config/nvim/plug-configs/fern.vim
-  source $HOME/.config/nvim/plug-configs/indentline.vim
-  source $HOME/.config/nvim/plug-configs/nerdcommenter.vim
-  source $HOME/.config/nvim/plug-configs/vim-svelte-plugin.vim
-  source $HOME/.config/nvim/plug-configs/highlightedyank.vim
-  source $HOME/.config/nvim/plug-configs/start-screen.vim
-  source $HOME/.config/nvim/plug-configs/gitgutter.vim
-  source $HOME/.config/nvim/plug-configs/rainbow.vim
-  source $HOME/.config/nvim/plug-configs/polyglot.vim
-  source $HOME/.config/nvim/plug-configs/nvim-treesitter.vim
-  source $HOME/.config/nvim/plug-configs/latex-unicoder.vim
+  source ~/.config/nvim/plug-configs/coc.vim
+  source ~/.config/nvim/plug-configs/headerguard.vim
+  source ~/.config/nvim/plug-configs/writing.vim
+  source ~/.config/nvim/plug-configs/fern.vim
+  source ~/.config/nvim/plug-configs/indentline.vim
+  source ~/.config/nvim/plug-configs/nerdcommenter.vim
+  source ~/.config/nvim/plug-configs/vim-svelte-plugin.vim
+  source ~/.config/nvim/plug-configs/highlightedyank.vim
+  source ~/.config/nvim/plug-configs/start-screen.vim
+  source ~/.config/nvim/plug-configs/gitgutter.vim
+  source ~/.config/nvim/plug-configs/rainbow.vim
+  source ~/.config/nvim/plug-configs/polyglot.vim
+  source ~/.config/nvim/plug-configs/nvim-treesitter.vim
+  source ~/.config/nvim/plug-configs/latex-unicoder.vim
   " Theming
-  source $HOME/.config/nvim/themes/syntax.vim
-  source $HOME/.config/nvim/themes/theme.vim
-  source $HOME/.config/nvim/themes/lightline.vim
+  source ~/.config/nvim/themes/syntax.vim
+  source ~/.config/nvim/themes/theme.vim
+  source ~/.config/nvim/themes/lightline.vim
 endif
 
 
