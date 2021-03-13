@@ -36,7 +36,7 @@ alt + shift + w
 
 ## Open browser
 super + b
-  /usr/bin/vivaldi-stable
+  $BROWSER
 
 ## Open the terminal emulator
 super + Return
@@ -49,6 +49,14 @@ super + @space
 ## Reload sxhkd config files
 super + Escape
   pkill -USR1 -x sxhkd
+
+## Take a Note
+super + n
+  ~/scripts/note-taker
+
+## Emoji picker
+super + @period
+  rofi -show emoji -modi emoji
 
 ### Bspwm hotkeys ###
 
