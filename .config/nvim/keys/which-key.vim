@@ -53,9 +53,6 @@ let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'c' : [':ColorizerToggle'                 , 'colorizer']              ,
       \ 'e' : [':Fern . -drawer -reveal=% -toggle', 'explorer']               ,
-      \ 'n' : [':set nonumber!'                   , 'line-numbers']           ,
-      \ 'r' : [':set norelativenumber!'           , 'relative line nums']     ,
-      \ 's' : [':let @/ = ""'                     , 'remove search highlight'],
       \ 't' : [':FloatermToggle'                  , 'terminal']               ,
       \ 'u' : [':UndotreeToggle'                  , 'undo tree']              ,
       \ 'v' : [':TagbarToggle'                    , 'tag viewer']
@@ -66,49 +63,57 @@ vnoremap <silent> <leader>al :<C-u>call unicoder#selection()<CR>
 
 autocmd FileType markdown,mkd,pandoc,textile,latex let g:which_key_map.a['p'] = ['TogglePencil', 'Pencil Toggle']
 
-" b is for buffer
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ '1' : ['b1'        , 'buffer 1']        ,
-      \ '2' : ['b2'        , 'buffer 2']        ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['Buffers'   , 'fzf-buffer']      ,
+" l is for language server protocol
+let g:which_key_map.l = {
+      \ 'name': '+lsp',
+      \ 'a': 'code actions',
+      \ 'r': 'buf rename',
+      \ 'e': 'show diagnostics',
+      \ 'F': 'format'
+      \ }
+nnoremap <silent> <leader>la :Lspsaga code_action<CR>
+vnoremap <silent> <leader>la :<C-U>Lspsaga range_code_action<CR>
+
+" w is for workspace
+let g:which_key_map['w'] = {
+      \ 'name': '+workspace',
+      \ 'a': 'add workplace folder',
+      \ 'r': 'remove workplace folder',
+      \ 'l': 'list workplace folders'
       \ }
 
+nnoremap <silent> <leader>wa <Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>
+nnoremap <silent> <leader>wr <Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>
+nnoremap <silent> <leader>wl <Cmd>lua vim.lsp.buf.list_workspace_folders()<CR>
+
+" TODO: Replace with telescope
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '/' : [':History/'              , 'history'],
-      \ ';' : [':Commands'              , 'commands'],
-      \ 'a' : [':Ag'                    , 'text Ag'],
-      \ 'b' : [':BLines'                , 'current buffer'],
-      \ 'B' : [':Buffers'               , 'open buffers'],
-      \ 'c' : [':Commits'               , 'commits'],
-      \ 'C' : [':BCommits'              , 'buffer commits'],
-      \ 'f' : [':Files'                 , 'files'],
-      \ 'g' : [':GFiles'                , 'git files'],
-      \ 'G' : [':GFiles?'               , 'modified git files'],
-      \ 'h' : [':History'               , 'file history'],
-      \ 'H' : [':History:'              , 'command history'],
-      \ 'l' : [':Lines'                 , 'lines'] ,
-      \ 'm' : [':Marks'                 , 'marks'] ,
-      \ 'M' : [':Maps'                  , 'normal maps'] ,
-      \ 'p' : [':Helptags'              , 'help tags'] ,
-      \ 'P' : [':Tags'                  , 'project tags'],
-      \ 's' : [':CocList snippets'      , 'snippets'],
-      \ 'S' : [':Colors'                , 'color schemes'],
-      \ 't' : [':Rg'                    , 'text Rg'],
-      \ 'T' : [':BTags'                 , 'buffer tags'],
-      \ 'w' : [':Windows'               , 'search windows'],
-      \ 'y' : [':Filetypes'             , 'file types'],
-      \ 'z' : [':FZF'                   , 'FZF'],
+      \ 'f' : ['<cmd>Telescope find_files'                 , 'files'],
       \ }
-      " \ 's' : [':Snippets'     , 'snippets'],
+      "\ '/' : [':History/'              , 'history'],
+      "\ ';' : [':Commands'              , 'commands'],
+      "\ 'a' : [':Ag'                    , 'text Ag'],
+      "\ 'b' : [':BLines'                , 'current buffer'],
+      "\ 'B' : [':Buffers'               , 'open buffers'],
+      "\ 'c' : [':Commits'               , 'commits'],
+      "\ 'C' : [':BCommits'              , 'buffer commits'],
+      "\ 'g' : [':GFiles'                , 'git files'],
+      "\ 'G' : [':GFiles?'               , 'modified git files'],
+      "\ 'h' : [':History'               , 'file history'],
+      "\ 'H' : [':History:'              , 'command history'],
+      "\ 'l' : [':Lines'                 , 'lines'] ,
+      "\ 'm' : [':Marks'                 , 'marks'] ,
+      "\ 'M' : [':Maps'                  , 'normal maps'] ,
+      "\ 'p' : [':Helptags'              , 'help tags'] ,
+      "\ 'P' : [':Tags'                  , 'project tags'],
+      "\ 's' : [':CocList snippets'      , 'snippets'],
+      "\ 'S' : [':Colors'                , 'color schemes'],
+      "\ 't' : [':Rg'                    , 'text Rg'],
+      "\ 'T' : [':BTags'                 , 'buffer tags'],
+      "\ 'w' : [':Windows'               , 'search windows'],
+      "\ 'y' : [':Filetypes'             , 'file types'],
 
 " g is for git
 let g:which_key_map.g = {
@@ -135,45 +140,6 @@ let g:which_key_map.g = {
       \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
       \ 'v' : [':GV'                               , 'view commits'],
       \ 'V' : [':GV!'                              , 'view buffer commits'],
-      \ }
-
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
-      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
-      \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
-      \ 'b' : [':CocNext'                            , 'next action'],
-      \ 'B' : [':CocPrev'                            , 'prev action'],
-      \ 'c' : [':CocList commands'                   , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
-      \ 'e' : [':CocList extensions'                 , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
-      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-      \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
-      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
-      \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
-      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-      \ 'O' : [':CocList outline'                    , 'outline'],
-      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
-      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
-      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'references'],
-      \ 'S' : [':CocList snippets'                   , 'snippets'],
-      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
-      \ 'u' : [':CocListResume'                      , 'resume list'],
-      \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'v' : [':Vista!!'                            , 'tag viewer'],
-      \ 'z' : [':CocDisable'                         , 'disable CoC'],
-      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
 
 " t is for terminal

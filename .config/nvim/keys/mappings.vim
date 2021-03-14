@@ -18,21 +18,13 @@ tnoremap kj <Esc>
 nnoremap ; :
 nnoremap : ;
 
-" Better window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Terminal window navigation
-"tnoremap <C-h> <C-\><C-N><C-w>h
-"tnoremap <C-j> <C-\><C-N><C-w>j
-"tnoremap <C-k> <C-\><C-N><C-w>k
-"tnoremap <C-l> <C-\><C-N><C-w>l
-"tnoremap <Esc> <C-\><C-n>
-
 " Use alt + hjkl to resize windows
-nnoremap <silent> <M-j>    :resize -2<CR>
-nnoremap <silent> <M-k>    :resize +2<CR>
-nnoremap <silent> <M-h>    :vertical resize -2<CR>
-nnoremap <silent> <M-l>    :vertical resize +2<CR>
+nnoremap <silent> <M-j> :resize -2<CR>
+nnoremap <silent> <M-k> :resize +2<CR>
+nnoremap <silent> <M-h> :vertical resize -2<CR>
+nnoremap <silent> <M-l> :vertical resize +2<CR>
+
+" completion-nvim:
+" Use <Tab> and <S-Tab> for completion
+imap <Tab> <Plug>(completion_smart_tab)
+imap <S-Tab> <Plug>(completion_smart_s_tab)
