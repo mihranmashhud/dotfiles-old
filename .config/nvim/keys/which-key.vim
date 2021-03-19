@@ -25,8 +25,7 @@ highlight default link WhichKeyDesc      Function
 
 " Hide status line
 autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0
-  \| autocmd BufLeave <buffer> set laststatus=2
+autocmd  FileType which_key set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
 
 
 " Single mappings

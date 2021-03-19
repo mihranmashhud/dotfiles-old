@@ -54,7 +54,7 @@ Plug 'preservim/nerdcommenter'                                       " Comment o
 Plug 'norcalli/nvim-colorizer.lua'                                   " Fast color preview
 Plug 'mhinz/vim-startify'                                            " Start screen
 Plug 'machakann/vim-highlightedyank'                                 " Highlight yank ~ Replace! check :h lua-highlight
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " Whichkey for vim
+Plug 'liuchengxu/vim-which-key'                                      " Whichkey for vim
 Plug 'junegunn/goyo.vim'                                             " Zen mode
 Plug 'jiangmiao/auto-pairs'                                          " Auto pair brackets
 Plug 'godlygeek/tabular'                                             " Align text easily
