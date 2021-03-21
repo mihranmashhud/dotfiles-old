@@ -119,6 +119,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nerdfont.vim"
   },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -271,20 +275,20 @@ _G.packer_plugins = {
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
-vim.cmd [[au FileType c ++once lua require("packer.load")({'vim-headerguard'}, { ft = "c" }, _G.packer_plugins)]]
 vim.cmd [[au FileType svelte ++once lua require("packer.load")({'vim-svelte'}, { ft = "svelte" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim', 'vim-markdown-jekyll'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType rmarkdown ++once lua require("packer.load")({'markdown-preview.nvim', 'vim-markdown-jekyll'}, { ft = "rmarkdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType julia ++once lua require("packer.load")({'julia-vim'}, { ft = "julia" }, _G.packer_plugins)]]
-vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-pandoc', 'vim-markdown-jekyll', 'vim-pandoc-syntax'}, { ft = "pandoc" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-pandoc', 'vim-pandoc-syntax', 'vim-markdown-jekyll'}, { ft = "pandoc" }, _G.packer_plugins)]]
 vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
 vim.cmd [[au FileType latex ++once lua require("packer.load")({'vimtex'}, { ft = "latex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType c ++once lua require("packer.load")({'vim-headerguard'}, { ft = "c" }, _G.packer_plugins)]]
 vim.cmd [[au FileType cpp ++once lua require("packer.load")({'vim-headerguard'}, { ft = "cpp" }, _G.packer_plugins)]]
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
-vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte/ftdetect/svelte.vim]]
-vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
+vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
+vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte/ftdetect/svelte.vim]]
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]]
 vim.cmd("augroup END")
 END

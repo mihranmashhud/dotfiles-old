@@ -66,36 +66,30 @@ return require('packer').startup(function(use)
   }                                                             -- YAML front matter highlighting
 
   -- Prose editing
-  --local prose_fts = {'markdown', 'latex', 'pandoc', 'rmarkdown'}
   use {
     'reedes/vim-pencil',
-    --ft = prose_fts
-  }                                -- Writing mode for vim
+  }                               -- Writing mode for vim
   use {
     'reedes/vim-litecorrect',
-    --ft = prose_fts
-  }                                -- Autocorrect common spelling errors
+  }                               -- Autocorrect common spelling errors
   use {
     'reedes/vim-lexical',
-    --ft = prose_fts
-  }-- Spell check additions + Thesaurus/dictionary completion
+  }                               -- Spell check additions + Thesaurus/dictionary completion
   use {
     'joom/latex-unicoder.vim',
-    --ft = prose_fts
-  }-- Convert latex command to unicode
+  }                               -- Convert latex command to unicode
   use {
     'dhruvasagar/vim-table-mode',
-    --ft = prose_fts
-  }-- Mode for creating and editing tables
+  }                               -- Mode for creating and editing tables
 
   -- Shortcuts
-  use 'vim-scripts/BufOnly.vim'     -- Remove all buffers except current focused
-  use 'tpope/vim-surround'          -- Edit surrounding text
-  use 'tpope/vim-eunuch'            -- Sugar on top of shell commands
+  use 'vim-scripts/BufOnly.vim'    -- Remove all buffers except current focused
+  use 'tpope/vim-surround'         -- Edit surrounding text
+  use 'tpope/vim-eunuch'           -- Sugar on top of shell commands
   use {
     'drmikehenry/vim-headerguard',
     ft = { 'cpp', 'c' },
-  }-- Add header guard.
+  }                                -- Add header guard.
 
   -- QOL
   use 'yuttie/comfortable-motion.vim' -- Smooth scrolling
@@ -110,42 +104,45 @@ return require('packer').startup(function(use)
   use 'godlygeek/tabular'             -- Align text easily
 
   -- Look & Feel
-  use {'lukas-reineke/indent-blankline.nvim', branch='lua'} -- Indent lines
-  use 'lambdalisue/nerdfont.vim'                            -- Nerdfont handler for vim
-  use 'kjwon15/vim-transparent'                             -- Enable terminal transparency. ~ Remove if not needed
-  use 'ghifarit53/tokyonight-vim'                           -- Tokyonight Theme
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua'
+  }                               -- Indent lines
+  use 'lambdalisue/nerdfont.vim'  -- Nerdfont handler for vim
+  use 'kjwon15/vim-transparent'   -- Enable terminal transparency. ~ Remove if not needed
+  use 'ghifarit53/tokyonight-vim' -- Tokyonight Theme
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
+  } -- Statusline
   use {
     'romgrk/barbar.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
+  } -- Bufferline
 
   -- Tools
-  use 'vim-scripts/Vimball'                                                -- Make and unzip vimballs
-  use 'skywind3000/asyncrun.vim'                                           -- Run shell commands in async
-  use 'metakirby5/codi.vim'                                                -- Code playground
-  use 'mbbill/undotree'                                                    -- View undo tree
+  use 'vim-scripts/Vimball'         -- Make and unzip vimballs
+  use 'skywind3000/asyncrun.vim'    -- Run shell commands in async
+  use 'metakirby5/codi.vim'         -- Code playground
+  use 'mbbill/undotree'             -- View undo tree
   use {
     'iamcco/markdown-preview.nvim',
     ft = {'markdown', 'rmarkdown'},
     run = function ()
       vim.fn['mkdp#util#install']()
     end
-  } -- Preview markdown while it is written ~ Replace with pandoc
+  }                                 -- Preview markdown while it is written ~ Replace with pandoc
 
   -- Browser
-  use {'raghur/vim-ghost', run = ':GhostInstall'}                  -- Send text between browser and nvim.
+  use {'raghur/vim-ghost', run = ':GhostInstall'} -- Send text between browser and nvim.
   use {
     'glacambre/firenvim',
     run = function ()
       vim.fn['firenvim#install'](0)
     end,
     opt = true,
-  } -- Browser integration
+  }                                               -- Browser integration
 
   -- Workarounds
   use 'antoinemadec/FixCursorHold.nvim' -- Fix Cursor Hold Issue (https://github.com/neovim/neovim/issues/12587)

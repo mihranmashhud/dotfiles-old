@@ -1,10 +1,10 @@
 -- Plugins
-require('packer/plugins')
+require'packer/plugins'
 -- Mappings
-require('keys/mappings')
+require'keys/mappings'
 -- Settings
-require('general/settings')
+require'general/settings'
 -- Plugin Configs
-require('configs')
+require'configs'
 -- Theming
-require('theming')
+require'theming'

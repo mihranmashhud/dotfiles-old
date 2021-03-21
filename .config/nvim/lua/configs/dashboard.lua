@@ -8,16 +8,8 @@ vim.g.dashboard_custom_shortcut = {
    find_word = 'SPC s w',
    book_marks = 'SPC s m'
 }
-vim.g.dashboard_custom_shortcut_icon = {
-  last_session = ' ',
-  find_history = 'ﭯ ' ,
-  find_file = ' ',
-  new_file = 'ﱐ ',
-  change_colorscheme = ' ',
-  find_word = ' ',
-  book_marks = ' ',
-}
-vim.g.dashboard_custom_header = require'utils.utils'.lines([[
+
+vim.g.dashboard_custom_header = vim.split([[
 ⠀⠀⠀⢀⣴⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⣦⡀
 ⠀⢀⣴⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣦⡀
 ⣴⣌⢻⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣦
@@ -30,4 +22,4 @@ vim.g.dashboard_custom_header = require'utils.utils'.lines([[
 ⢿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣆⠻⡿
 ⠀⠙⢿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⡿⠃
 ⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡿⠋
-]])
+]], '\n', true)

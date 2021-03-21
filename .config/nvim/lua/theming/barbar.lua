@@ -1,5 +1,5 @@
 local bufferline = vim.g.bufferline or {}
 
-bufferline.auto_hide = true
+bufferline.auto_hide = false
 
 vim.g.bufferline = bufferline

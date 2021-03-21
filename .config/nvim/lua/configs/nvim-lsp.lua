@@ -4,6 +4,7 @@ local map_utils = require'utils.map'
 local autocmd = require'utils.autocmd'.autocmd
 local bind_func = map_utils.buf_bind_function
 local set_group_name = require('utils.map').set_group_name
+local dirname = util.path.dirname
 -- So diagnostics have color
 autocmd('ColorScheme * :lua require("vim.lsp.diagnostic")._define_default_signs_and_highlights()')
 
@@ -47,7 +48,7 @@ local on_attach = function(client, bufnr)
     '   Module';      -- Module
     ' 凜 Namespace';   -- Namespace
     '   Package';     -- Package
-    ' פּ  Class';       -- Class
+    '   Class';       -- Class
     '   Method';      -- Method
     '   Property';    -- Property
     '   Field';       -- Field
@@ -77,7 +78,7 @@ local on_attach = function(client, bufnr)
     '   Constructor'; -- Constructor
     '   Field';       -- Field
     '[] Variable';    -- Variable
-    ' פּ  Class';       -- Class
+    '   Class';       -- Class
     ' 蘒 Interface';   -- Interface
     '   Module';      -- Module
     '   Property';    -- Property
@@ -113,6 +114,7 @@ lspconfig.vimls.setup{on_attach = on_attach}
 -- C++
 lspconfig.ccls.setup{
   on_attach = on_attach,
+	root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git", ".ccls") or dirname
 }
 
 -- Typescript

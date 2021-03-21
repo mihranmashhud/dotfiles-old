@@ -1,5 +1,6 @@
 local gl = require('galaxyline')
-local colors = require('galaxyline.theme').default
+--local colors = require('galaxyline.theme').default
+local colors = require('utils.theming').hex_palette
 local condition = require('galaxyline.condition')
 --local vcs = require('galaxyline.provider_vcs')
 --local fileinfo = require('galaxyline.provider_fileinfo')
@@ -11,53 +12,55 @@ local buffer = require('galaxyline.provider_buffer')
 local autocmd = require('utils.autocmd').autocmd
 local gls = gl.section
 
-colors.bg = '#000000'
-autocmd('ColorScheme * hi StatusLine guibg='..colors.bg) -- Force the StatusLine bg
-autocmd('ColorScheme * hi StatusLineNC guibg='..colors.bg) -- Force the StatusLine bg
+vim.fn.statusline_bg = function ()
+  vim.cmd('hi StatusLine guibg='..colors.bg)
+end
+autocmd('ColorScheme * :lua vim.fn.statusline_bg()') -- Force the StatusLine bg
+autocmd('ColorScheme * :lua vim.fn.statusline_bg()') -- Force the StatusLine bg
 
 local mode_text = {
   n      = 'NORMAL',
   i      = 'INSERT',
   v      = 'VISUAL',
-	[''] = 'V-BLOCK',
-	V      = 'V-LINE',
-	c      = 'COMMAND',
-	no     = 'OP-PENDING',
-	s      = 'SELECT',
-	S      = 'SELECT',
-	[''] = 'SELECT',
-	ic     = 'INS-COMP',
-	R      = 'REPLACE',
-	Rv     = 'VIRTUAL',
-	cv     = 'EX',
-	ce     = 'N-EX',
-	r      = 'HIT-ENTER',
-	rm     = '--MORE',
-	['r?'] = ':CONFIRM',
-	['!']  = 'SHELL',
-	t      = 'TERMINAL',
+  [''] = 'V-BLOCK',
+  V      = 'V-LINE',
+  c      = 'COMMAND',
+  no     = 'OP-PENDING',
+  s      = 'SELECT',
+  S      = 'SELECT',
+  [''] = 'SELECT',
+  ic     = 'INS-COMP',
+  R      = 'REPLACE',
+  Rv     = 'VIRTUAL',
+  cv     = 'EX',
+  ce     = 'N-EX',
+  r      = 'HIT-ENTER',
+  rm     = '--MORE',
+  ['r?'] = ':CONFIRM',
+  ['!']  = 'SHELL',
+  t      = 'TERMINAL',
 }
 local mode_color = {
   n      = colors.blue,
   i      = colors.green,
-  v      = colors.violet,
-	[''] = colors.violet,
-	V      = colors.violet,
-	c      = colors.yellow,
-	no     = colors.blue,
-	s      = colors.red,
-	S      = colors.red,
-	[''] = colors.red,
-	ic     = colors.green,
-	R      = colors.magenta,
-	Rv     = colors.magenta,
-	cv     = colors.yellow,
-	ce     = colors.yellow,
-	r      = colors.cyan,
-	rm     = colors.cyan,
-	['r?'] = colors.cyan,
-	['!']  = colors.orange,
-	t      = colors.orange,
+  v      = colors.purple,
+  [''] = colors.purple,
+  V      = colors.purple,
+  c      = colors.yellow,
+  no     = colors.blue,
+  s      = colors.red,
+  S      = colors.red,
+  [''] = colors.red,
+  ic     = colors.green,
+  R      = colors.lightred,
+  Rv     = colors.lightred,
+  cv     = colors.yellow,
+  ce     = colors.yellow,
+  r      = colors.cyan,
+  rm     = colors.cyan,
+  ['r?'] = colors.cyan,
+  ['!']  = colors.orange,
+  t      = colors.orange,
 }
 
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
@@ -244,8 +247,8 @@ table.insert(gls.right, {
         '▁',
         ' ',
       }
-      local result = math.floor((current_line/total_lines)*(#bar_chars-1)+1)
-      return bar_chars[result]
+      local result = math.floor((current_line/total_lines)*(#bar_chars)+1)
+      return bar_chars[result] or ' '
     end,
     highlight = {colors.bg, colors.orange}
   }

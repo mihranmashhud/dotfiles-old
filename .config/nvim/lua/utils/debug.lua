@@ -1,30 +1,50 @@
 local debug = {}
 
-INDENT = 4
-
-local function pprint(key, val, indent)
-   local spacing = string.rep(' ', indent)
-   if (type(val) == 'table') then
-      if key then
-         print(spacing..key..': {')
-      end
-      for k,v in ipairs(val) do
-         pprint(k,v, indent + INDENT)
-      end
-      if key then
-         print(spacing..'},')
-      end
-   elseif (type(val) == 'string') then
-      print(spacing)
-   else
-      print(spacing..key..': '..val..',')
-   end
+local function get_visual_selection()
+  vim.cmd('normal! gv"ay')
+  return vim.fn.getreg('a')
 end
 
-function debug.pprint(...)
-   for _, val in ipairs(...) do
-      pprint(nil, val, INDENT)
-   end
+-- Execute current line
+function debug.execute_line()
+  local line = vim.api.nvim_get_current_line()
+  local ft = vim.bo.filetype
+  if ft == 'lua' then
+    loadstring(line)
+  elseif ft == 'vim' then
+    vim.cmd(line)
+  end
+end
+
+-- Execute visual selection
+function debug.execute_visual_selection()
+  local ft = vim.bo.filetype
+  if ft == 'lua' then
+    loadstring(get_visual_selection())()
+  else
+    vim.api.nvim_exec(get_visual_selection(), false)
+  end
+end
+
+-- Load lua/vimscript file into vim
+function debug.load_file()
+  local file = vim.fn.expand('%')
+  local ft = vim.bo.filetype
+  if ft == 'lua' then
+    vim.cmd("luafile "..file)
+  elseif ft == 'vim' then
+    vim.cmd("source "..file)
+  end
+end
+
+-- pprint
+function vim.pprint(val)
+  print(vim.inspect(val))
+end
+-- Reload
+function Reload(modname)
+  package.loaded[modname] = nil
+  require(modname)
 end
 
 return debug
