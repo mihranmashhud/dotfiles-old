@@ -10,7 +10,7 @@ require('lspsaga').init_lsp_saga{
   code_action_prompt = {
     enable = true,
     sign = false,
-    virtual_text = true,
+    virtual_text = false,
   },
   code_action_keys = { quit = '<Esc>',exec = '<CR>' },
   finder_definition_icon = 'Defs - ',

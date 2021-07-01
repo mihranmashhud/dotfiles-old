@@ -2,24 +2,13 @@ local map = {}
 
 map._leader_info = {}
 
-function map.enable_whichkey()
-  local leader = vim.api.nvim_get_var("mapleader")
-  local escaped_leader = leader:gsub("'", "\\'")
-  local leader_cmd = ":WhichKey '"..escaped_leader.."'<CR>"
-  local leader_cmd_visual = ":WhichKeyVisual '"..escaped_leader.."'<CR>"
-  map.bind_command('n', leader, leader_cmd, {noremap = true, silent = true})
-  map.bind_command('v', leader, leader_cmd_visual, {noremap = true, silent = true})
-  vim.api.nvim_exec([[
-    highlight default link WhichKey          Operator
-    highlight default link WhichKeySeperator DiffAdded
-    highlight default link WhichKeyGroup     Identifier
-    highlight default link WhichKeyDesc      Function
+local wk = require'which-key'
 
-    autocmd! FileType which_key
-    autocmd  FileType which_key set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
-  ]], false)
-  vim.fn['which_key#register'](leader, 'g:which_key_map')
-end
+wk.setup{
+  window = {
+    border = "single",
+  },
+}
 
 --- Greedy pattern matching on multiple patterns
 local function seqchoice(str, patternlist)
@@ -44,38 +33,15 @@ local function seqchoice(str, patternlist)
 end
 
 --- Split a key sequence string like "<S-tab>fed" into { "<S-tab>", "f", "e", "d" }
-local function split_keys(keys)
+--
+-- @tparam string key sequence to split
+function map.split_keys(keys)
    return seqchoice(keys, {'<[A-Za-z-]+>', '.'})
 end
 
 --- Add which-key info for a keybind
 local function add_info(keys, name)
-  -- Find our info table and strip the prefix
-  local t
-  if vim.startswith(keys, "<leader>") then
-    keys = keys:sub(9)
-    t = map._leader_info
-  else
-    return
-  end
-
-  -- Find/create tables along the path
-  local keys_split = split_keys(keys)
-  local final_key = keys_split[#keys_split]
-  keys_split[#keys_split] = nil
-  for _, key in ipairs(keys_split) do
-    local new_t = t[key]
-    if new_t == nil then
-      new_t = {}
-      t[key] = new_t
-    end
-    t = new_t
-  end
-
-  t[final_key] = name
-
-  -- Update which_key_map
-  vim.g.which_key_map = map._leader_info
+  wk.register({ [keys] = { name } })
 end
 
 map._bound_funcs = {}
@@ -90,19 +56,16 @@ local function make_func_avail(mode, keys, func)
   local func_name = "bind_" .. mode .. "_" .. keys
 
   local func_name_escaped = func_name
-  -- Escape Lua things
   func_name_escaped = func_name_escaped:gsub("'", "\\'")
   func_name_escaped = func_name_escaped:gsub('"', '\\"')
   func_name_escaped = func_name_escaped:gsub("\\[", "\\[")
   func_name_escaped = func_name_escaped:gsub("\\]", "\\]")
-
-  -- Escape VimScript things
-  -- We only escape `<` - I couldn't be bothered to deal with how <lt>/<gt> have angle brackets in themselves
   func_name_escaped = func_name_escaped:gsub("<", "<lt>")
 
   map._bound_funcs[func_name] = func
 
   local lua_command = ":lua require('utils.map')._bound_funcs['" .. func_name_escaped .. "']()<CR>"
+
   -- Prefix with <C-o> if this is an insert-mode mapping
   if mode.map_prefix == "i" then
     lua_command = "<C-o>" .. lua_command
@@ -160,7 +123,7 @@ function map.bind_command(mode, keys, command, options, name)
   if type(command) == 'string' then
     vim.api.nvim_set_keymap(mode, keys, command:gsub('^:', '<Cmd>'), options)
 
-    if name ~= nil then
+    if type(name) == 'string' then
       add_info(keys, name)
     end
   elseif type(command) == 'function' then
@@ -181,7 +144,7 @@ function map.buf_bind_command(buf, mode, keys, command, options, name)
   if type(command) == 'string' then
     vim.api.nvim_buf_set_keymap(buf, mode, keys, command, options)
 
-    if name ~= nil then
+    if type(name) == 'string' then
       add_info(keys, name)
     end
   elseif type(command) == 'function' then
@@ -194,29 +157,11 @@ end
 --
 -- @tparam string keys The keys sequence (eg: `<leader>fe`)
 -- @tparam string name The group name (eg: `Editor`)
-function map.set_group_name(keys, name)
-  local t
-  if vim.startswith(keys, "<leader>") then
-    keys = keys:sub(9)
-    t = map._leader_info
-  else
-    return
-  end
-
-  local keys_split = split_keys(keys)
-  for _, key in ipairs(keys_split) do
-    local new_t = t[key]
-    if new_t == nil then
-      new_t = {}
-      t[key] = new_t
-    end
-    t = new_t
-  end
-
-  t.name = "+" .. name
+function map.set_group_name(keys, group_name)
+  wk.register({ [keys] =  { name = group_name }})
 end
 
----Helper functions
+--- Helper functions
 local function merge(t1, t2)
   local t = t1
   for k,v in ipairs(t2) do
@@ -224,25 +169,60 @@ local function merge(t1, t2)
   end
   return t
 end
+--- Replace termcodes in string
+--
+-- @tparam string replace termcodes
 function map.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.imap(keyseq, command, options, name)
   return map.bind_command('i', keyseq, command, options or {}, name)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.nmap(keyseq, command, options, name)
   return map.bind_command('n', keyseq, command, options or {}, name)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
+function map.smap(keyseq, command, options, name)
+  return map.bind_command('s', keyseq, command, options or {}, name)
+end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.inoremap(keyseq, command, options, name)
   return map.bind_command('i', keyseq, command, merge(options, {noremap = true}), name)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.nnoremap(keyseq, command, options, name)
   return map.bind_command('n', keyseq, command, merge(options, {noremap = true}), name)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.vnoremap(keyseq, command, options, name)
   return map.bind_command('v', keyseq, command, merge(options, {noremap = true}), name)
 end
+-- @tparam string keys The keys to press (eg: `<leader>feR`)
+-- @tparam string command The Vim command to bind to the key sequence (eg: `:source $MYVIMRC<CR>`)
+-- @tparam table options See `https://neovim.io/doc/user/api.html#nvim_set_keymap()` (eg: `{ noremap = true }`)
+-- @tparam[opt] string name A helpful display name
 function map.tnoremap(keyseq, command, options, name)
   return map.bind_command('t', keyseq, command, merge(options, {noremap = true}), name)
 end
+
 return map

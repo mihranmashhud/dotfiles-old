@@ -12,6 +12,41 @@ packadd packer.nvim
 try
 
 lua << END
+  local time
+  local profile_info
+  local should_profile = false
+  if should_profile then
+    local hrtime = vim.loop.hrtime
+    profile_info = {}
+    time = function(chunk, start)
+      if start then
+        profile_info[chunk] = hrtime()
+      else
+        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
+      end
+    end
+  else
+    time = function(chunk, start) end
+  end
+  
+local function save_profiles(threshold)
+  local sorted_times = {}
+  for chunk_name, time_taken in pairs(profile_info) do
+    sorted_times[#sorted_times + 1] = {chunk_name, time_taken}
+  end
+  table.sort(sorted_times, function(a, b) return a[2] > b[2] end)
+  local results = {}
+  for i, elem in ipairs(sorted_times) do
+    if not threshold or threshold and elem[2] > threshold then
+      results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
+    end
+  end
+
+  _G._packer = _G._packer or {}
+  _G._packer.profile_output = results
+end
+
+time([[Luarocks path setup]], true)
 local package_path_str = "/home/mihranmashhud/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/mihranmashhud/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/mihranmashhud/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/mihranmashhud/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/home/mihranmashhud/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -22,15 +57,20 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
+time([[Luarocks path setup]], false)
+time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
 
+time([[try_loadstring definition]], false)
+time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["BufOnly.vim"] = {
     loaded = true,
@@ -60,17 +100,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/comfortable-motion.vim"
   },
-  ["completion-buffers"] = {
+  ["compe-latex-symbols"] = {
     loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/completion-buffers"
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/compe-latex-symbols"
   },
-  ["completion-nvim"] = {
+  ["compe-tabnine"] = {
     loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/completion-nvim"
-  },
-  ["completion-tabnine"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/completion-tabnine"
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/compe-tabnine"
   },
   ["dashboard-nvim"] = {
     loaded = true,
@@ -98,9 +134,15 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim"
   },
+  kommentary = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/kommentary"
+  },
   ["latex-unicoder.vim"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/latex-unicoder.vim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/latex-unicoder.vim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -111,21 +153,29 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim"
   },
-  nerdcommenter = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nerdcommenter"
-  },
   ["nerdfont.vim"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nerdfont.vim"
   },
-  ["nvim-bufferline.lua"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-dap"
+  },
+  ["nvim-dap-python"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-dap-python"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -163,6 +213,10 @@ _G.packer_plugins = {
   tabular = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/tabular"
+  },
+  ["telescope-dap.nvim"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/telescope-dap.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
@@ -206,12 +260,14 @@ _G.packer_plugins = {
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-headerguard"
   },
   ["vim-lexical"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-lexical"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-lexical"
   },
   ["vim-litecorrect"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-litecorrect"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-litecorrect"
   },
   ["vim-markdown-jekyll"] = {
     loaded = false,
@@ -229,8 +285,9 @@ _G.packer_plugins = {
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc-syntax"
   },
   ["vim-pencil"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-pencil"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pencil"
   },
   ["vim-polyglot"] = {
     loaded = true,
@@ -250,16 +307,13 @@ _G.packer_plugins = {
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte"
   },
   ["vim-table-mode"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-table-mode"
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-table-mode"
   },
   ["vim-transparent"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-transparent"
-  },
-  ["vim-which-key"] = {
-    loaded = true,
-    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vim-which-key"
   },
   vimtex = {
     loaded = false,
@@ -269,28 +323,46 @@ _G.packer_plugins = {
   ["vista.vim"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/vista.vim"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
+time([[Defining packer_plugins]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType latex ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vimtex', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim'}, { ft = "latex" }, _G.packer_plugins)]]
 vim.cmd [[au FileType svelte ++once lua require("packer.load")({'vim-svelte'}, { ft = "svelte" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim', 'vim-markdown-jekyll'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType rmarkdown ++once lua require("packer.load")({'markdown-preview.nvim', 'vim-markdown-jekyll'}, { ft = "rmarkdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'vim-markdown-jekyll', 'vim-pandoc', 'vim-pandoc-syntax', 'latex-unicoder.vim'}, { ft = "pandoc" }, _G.packer_plugins)]]
+vim.cmd [[au FileType rmarkdown ++once lua require("packer.load")({'vim-markdown-jekyll', 'markdown-preview.nvim'}, { ft = "rmarkdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType julia ++once lua require("packer.load")({'julia-vim'}, { ft = "julia" }, _G.packer_plugins)]]
-vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-pandoc', 'vim-pandoc-syntax', 'vim-markdown-jekyll'}, { ft = "pandoc" }, _G.packer_plugins)]]
+vim.cmd [[au FileType mkd ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim'}, { ft = "mkd" }, _G.packer_plugins)]]
 vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType latex ++once lua require("packer.load")({'vimtex'}, { ft = "latex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType c ++once lua require("packer.load")({'vim-headerguard'}, { ft = "c" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'vim-markdown-jekyll', 'latex-unicoder.vim', 'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType cpp ++once lua require("packer.load")({'vim-headerguard'}, { ft = "cpp" }, _G.packer_plugins)]]
+vim.cmd [[au FileType c ++once lua require("packer.load")({'vim-headerguard'}, { ft = "c" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
-vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
-vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte/ftdetect/svelte.vim]], true)
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte/ftdetect/svelte.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-svelte/ftdetect/svelte.vim]], false)
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], true)
+vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], false)
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], true)
+vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], false)
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]], true)
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]], false)
 vim.cmd("augroup END")
+if should_profile then save_profiles() end
+
 END
 
 catch

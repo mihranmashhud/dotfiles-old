@@ -15,6 +15,7 @@ local default_palette = {
 }
 
 local function clamp(val, from, to)
+  if val == nil then return end
   if val < from then
     return from
   elseif val > to then
@@ -24,6 +25,7 @@ local function clamp(val, from, to)
 end
 
 local function scale(t, scalar)
+  if t == nil then return end
   local new_t = {}
   for i,v in ipairs(t) do
     new_t[i] = v*scalar
@@ -32,6 +34,7 @@ local function scale(t, scalar)
 end
 
 function theming.quick_saturate(color, val)
+  if color == nil then return end
   local r = color[1]
   local g = color[2]
   local b = color[3]
@@ -65,6 +68,7 @@ end
 
 -- Darken color array
 function theming.darken(color, percent)
+  if color == nil then return end
   local c = {}
   for i,val in ipairs(scale(color, 1 - percent)) do
     c[i] = clamp(val, 0, 255)
@@ -74,6 +78,7 @@ end
 
 -- Lighten color array
 function theming.lighten(color, percent)
+  if color == nil then return end
   local c = {}
   for i,val in ipairs(scale(color, 1 + percent)) do
     c[i] = clamp(val, 0, 255)
@@ -82,6 +87,7 @@ function theming.lighten(color, percent)
 end
 
 function theming.interpolate(c1, c2, percent)
+  if c1 == nil or c2 == nil then return end
   local result = {}
   for i, val1 in ipairs(c1) do
     local val2 = c2[i]

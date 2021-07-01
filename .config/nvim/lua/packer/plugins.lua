@@ -17,39 +17,47 @@ return require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
-  }                                                -- Treesitter
+  }                                               -- Treesitter
+  use {
+    'windwp/nvim-ts-autotag',
+    requires = {'nvim-treesitter/nvim-treesitter'}
+  }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'}
     }
-  }                                                -- Telescope
+  }                                               -- Telescope
   use 'nvim-telescope/telescope-fzy-native.nvim'
-  use 'nvim-lua/completion-nvim'                                                -- Completion using native LSP
-  use 'nvim-telescope/telescope-snippets.nvim'                                                -- Telescope snippets
-  use 'norcalli/snippets.nvim'                     -- Snippets to use in nvim
-  use 'neovim/nvim-lspconfig'                      -- Neovim native LSP
-  use 'liuchengxu/vista.vim'                       -- Tag viewer ~ LSP plugin may be available
-  use 'glepnir/lspsaga.nvim'                       -- LSP UI
+  use "hrsh7th/nvim-compe"                        -- Completion
   use {
-    'steelsojka/completion-buffers',
-    requires = {{'nvim-lua/completion-nvim'}}
-  }              -- Buffer completion source
+    'tzachar/compe-tabnine',
+    run='./install.sh',
+    requires = 'hrsh7th/nvim-compe'               -- Tabnine completion source
+  }
   use {
-    'aca/completion-tabnine',
-    run = {'./install.sh'},
-    requires = {{'nvim-lua/completion-nvim'}}
-  }              -- Tabnine completion source
+    'GoldsteinE/compe-latex-symbols',
+    requires = 'hrsh7th/nvim-compe'
+  }
+  use 'nvim-telescope/telescope-snippets.nvim'    -- Telescope snippets
+  use 'norcalli/snippets.nvim'                    -- Snippets to use in nvim
+  use 'neovim/nvim-lspconfig'                     -- Neovim native LSP
+  use 'liuchengxu/vista.vim'                      -- Tag viewer ~ LSP plugin may be available
+  use 'glepnir/lspsaga.nvim'                      -- LSP UI
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {{'kyazdani42/nvim-web-devicons'}}
-  }
+  }                                               -- Explorer
+  use 'mfussenegger/nvim-dap'                     -- Debug Adapter protocol
+  use 'nvim-telescope/telescope-dap.nvim'         -- Telescope DAP plugin
+  use 'mfussenegger/nvim-dap-python'              -- Python DAP
+  use 'theHamsta/nvim-dap-virtual-text'           -- DAP virtual text
 
   -- Language specific
-  use {'vim-pandoc/vim-pandoc', ft = {'pandoc'}, opt = true}        -- Pandoc integration
+  use {'vim-pandoc/vim-pandoc', ft = {'pandoc'}, opt = true}       -- Pandoc integration
   use {'JuliaEditorSupport/julia-vim', ft = {'julia'}, opt = true} -- Julia support in vim
-  use 'alx741/vim-stylishask'        -- Prettify Haskell ~ LSP may replace
+  use 'alx741/vim-stylishask'                                      -- Prettify Haskell ~ LSP may replace
 
   -- Git
   use 'tpope/vim-fugitive'     -- Git integration ~ Telescope may replace?
@@ -65,21 +73,33 @@ return require('packer').startup(function(use)
     ft = {'markdown', 'pandoc', 'rmarkdown'}
   }                                                             -- YAML front matter highlighting
 
+  local prose_fts = {'markdown', 'pandoc', 'latex', 'mkd'}
+  local prose_run = function () require'configs.writing' end
   -- Prose editing
   use {
     'reedes/vim-pencil',
+    ft = prose_fts,
+    run = prose_run,
   }                               -- Writing mode for vim
   use {
     'reedes/vim-litecorrect',
+    ft = prose_fts,
+    run = prose_run,
   }                               -- Autocorrect common spelling errors
   use {
     'reedes/vim-lexical',
+    ft = prose_fts,
+    run = prose_run,
   }                               -- Spell check additions + Thesaurus/dictionary completion
   use {
     'joom/latex-unicoder.vim',
+    ft = prose_fts,
+    run = prose_run,
   }                               -- Convert latex command to unicode
   use {
     'dhruvasagar/vim-table-mode',
+    ft = prose_fts,
+    run = prose_run,
   }                               -- Mode for creating and editing tables
 
   -- Shortcuts
@@ -92,16 +112,21 @@ return require('packer').startup(function(use)
   }                                -- Add header guard.
 
   -- QOL
-  use 'yuttie/comfortable-motion.vim' -- Smooth scrolling
-  use 'preservim/nerdcommenter'       -- Comment out text
-  use 'norcalli/nvim-colorizer.lua'   -- Fast color preview
-  use 'glepnir/dashboard-nvim'        -- Start screen
+  use 'yuttie/comfortable-motion.vim'     -- Smooth scrolling
+  use {'b3nj5m1n/kommentary', opt = true} -- Comment out text
+  use 'norcalli/nvim-colorizer.lua'       -- Fast color preview
+  use 'glepnir/dashboard-nvim'            -- Start screen
+  -- use {
+  --   'liuchengxu/vim-which-key',
+  -- }                                       -- Whichkey for vim
   use {
-    'liuchengxu/vim-which-key',
-  }                                   -- Whichkey for vim
-  use 'junegunn/goyo.vim'             -- Zen mode
-  use 'jiangmiao/auto-pairs'          -- Auto pair brackets
-  use 'godlygeek/tabular'             -- Align text easily
+    "folke/which-key.nvim",
+    config = require'utils.map'.which_key_config
+  }
+
+  use 'junegunn/goyo.vim'                 -- Zen mode
+  use 'jiangmiao/auto-pairs'              -- Auto pair brackets
+  use 'godlygeek/tabular'                 -- Align text easily
 
   -- Look & Feel
   use {
@@ -110,16 +135,12 @@ return require('packer').startup(function(use)
   }                               -- Indent lines
   use 'lambdalisue/nerdfont.vim'  -- Nerdfont handler for vim
   use 'kjwon15/vim-transparent'   -- Enable terminal transparency. ~ Remove if not needed
-  use 'ghifarit53/tokyonight-vim' -- Tokyonight Theme
+  use 'ghifarit53/tokyonight-vim'     -- Tokyonight theme
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   } -- Statusline
-  use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  } -- Bufferline
 
   -- Tools
   use 'vim-scripts/Vimball'         -- Make and unzip vimballs

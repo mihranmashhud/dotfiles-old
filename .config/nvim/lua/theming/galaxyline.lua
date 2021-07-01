@@ -112,6 +112,8 @@ table.insert(gls.left, {
     provider = 'GitBranch',
     condition = condition.check_git_workspace,
     highlight = {colors.violet,colors.bg,'bold'},
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
   }
 })
 

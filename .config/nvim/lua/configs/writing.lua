@@ -1,6 +1,6 @@
 local autocmd_utils = require('utils/autocmd')
 local autocmd = autocmd_utils.autocmd
-local augroup = autocmd_utils.augroup
+local nnoremap = require'utils.map'.nnoremap
 
 vim.g.md_pdf_viewer = 'zathura'
 vim.g.md_args='--filter pandoc-citeproc -V --listings'
@@ -8,13 +8,14 @@ vim.g.md_args='--filter pandoc-citeproc -V --listings'
 autocmd('BufNewfile,BufRead *.Rmd set filetype=markdown')
 autocmd('BufNewfile,BufRead *.md set filetype=markdown')
 
-augroup({
-   'Filetype markdown,mkd,pandoc call lexical#init() | call pencil#init() | call litecorrect#init()',
-   'Filetype textile call lexical#init() | call pencil#init() | call litecorrect#init()',
-}, 'lexical')
+-- Init writing plugins
+vim.fn['pencil#init']()
+vim.fn['litecorrect#init']()
+vim.fn['lexical#init']()
 
-vim.g['lexical#spelllang'] = {'en_us', 'en_ca'}
-
--- Pencil defaults
+-- Defaults
 vim.g['pencil#conceallevel'] = 1
 vim.g['pencil#textwidth'] = 80
+vim.g['lexical#spelllang'] = {'en_us', 'en_ca'}
+
+nnoremap('<leader>ap', ':PencilToggle', { silent = true }, 'toggle pencil')

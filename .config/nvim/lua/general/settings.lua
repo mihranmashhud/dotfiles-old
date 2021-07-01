@@ -24,8 +24,9 @@ vim.o.autoread = true                                               -- Autoread 
 vim.o.fillchars = 'eob: '                                           -- Transparent end of buffer chars
 vim.o.scrolloff = 8                                                 -- Keep this many lines above and below cursor
 vim.o.completeopt = 'menuone,noinsert,noselect'                     -- Better completion experience
-vim.o.guifont = 'InputMono Nerd Font:h14'
+vim.o.guifont = 'InputMono Nerd Font:h14'                           -- Font
 vim.o.linespace = 1
+vim.o.modelines = 1
 
 --- Window
 
@@ -40,12 +41,15 @@ vim.wo.foldlevel = 99        -- Default to no folding
 --- Buffer
 
 vim.bo.iskeyword = vim.bo.iskeyword..',-' -- Dash seperated words are text objects
-vim.bo.fileencoding = 'utf-8'         -- UTF-8 encoding written to file
-vim.bo.shiftwidth = 2                 -- This many spaces per tab
-vim.bo.softtabstop = 2                -- Again this many spaces per tab
-vim.bo.tabstop = 2                    -- Really use 2 spaces okay?
-vim.bo.expandtab = true               -- Tabs are actually spaces
-vim.bo.autoindent = true              -- Indent always
-vim.bo.undofile = true                -- Track those changes!
+vim.bo.fileencoding = 'utf-8'             -- UTF-8 encoding written to file
+vim.bo.shiftwidth = 2                     -- This many spaces per tab
+vim.o.shiftwidth = 2                      -- This many spaces per tab
+vim.bo.softtabstop = 2                    -- Again this many spaces per tab
+vim.o.softtabstop = 2                     -- Again this many spaces per tab
+vim.bo.tabstop = 2                        -- Really use 2 spaces okay?
+vim.o.tabstop = 2                         -- Really use 2 spaces okay?
+vim.bo.expandtab = true                   -- Tabs are actually spaces
+vim.bo.autoindent = true                  -- Indent always
+vim.bo.undofile = true                    -- Track those changes!
 
 vim.cmd("filetype plugin on") -- For filetype plugins of course

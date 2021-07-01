@@ -1,3 +1,4 @@
+local lspconfig = require'lspconfig'
 local protocol = require'vim.lsp.protocol'
 local util = require'lspconfig.util'
 local map_utils = require'utils.map'
@@ -5,8 +6,64 @@ local autocmd = require'utils.autocmd'.autocmd
 local bind_func = map_utils.buf_bind_function
 local set_group_name = require('utils.map').set_group_name
 local dirname = util.path.dirname
--- So diagnostics have color
-autocmd('ColorScheme * :lua require("vim.lsp.diagnostic")._define_default_signs_and_highlights()')
+
+-- Labels
+protocol.SymbolKind = {
+  '   File';        -- File
+  '   Module';      -- Module
+  ' 凜 Namespace';   -- Namespace
+  '   Package';     -- Package
+  '   Class';       -- Class
+  '   Method';      -- Method
+  '   Property';    -- Property
+  '   Field';       -- Field
+  '   Constructor'; -- Constructor
+  '   Enum';        -- Enum
+  ' 蘒 Interface';   -- Interface
+  '   Function';    -- Function
+  '[] Variable';    -- Variable
+  '   Constant';    -- Constant
+  '   Text';        -- Text
+  '   Value';       -- Value
+  '   Boolean';     -- Boolean
+  '   Array';       -- Array
+  '   Object';      -- Object
+  '   Key';         -- Key
+  ' ﳠ  Null';        -- Null
+  '   Enum member'; -- EnumMember
+  '   Struct';      -- Struct
+  '   Event';       -- Event
+  '   Operator';    -- Operator
+  '<> Typeparam';   -- TypeParameter
+}
+protocol.CompletionItemKind = {
+  '   Text';        -- Text
+  '   Method';      -- Method
+  '   Function';    -- Function
+  '   Constructor'; -- Constructor
+  '   Field';       -- Field
+  '[] Variable';    -- Variable
+  '   Class';       -- Class
+  ' 蘒 Interface';   -- Interface
+  '   Module';      -- Module
+  '   Property';    -- Property
+  ' 塞 Unit';        -- Unit
+  '   Value';       -- Value
+  ' 練 Enum';        -- Enum
+  '   Keyword';     -- Keyword
+  '   Snippet';     -- Snippet
+  '   Color';       -- Color
+  '   File';        -- File
+  '   Reference';   -- Reference
+  '   Folder';      -- Folder
+  '   Enum member'; -- EnumMember
+  '   Constant';    -- Constant
+  '   Struct';      -- Struct
+  '   Event';       -- Event
+  '   Operator';    -- Operator
+  '<> Typeparam';   -- TypeParameter
+}
+
 
 local on_attach = function(client, bufnr)
   print('LSP started.')
@@ -19,15 +76,15 @@ local on_attach = function(client, bufnr)
   end
   -- Mappings
   local opts = { noremap=true, silent=true }
-  nmap('gd', vim.lsp.buf.definition, opts)
-  nmap('gD', vim.lsp.buf.declaration, opts)
-  nmap('gr', vim.lsp.buf.references, opts)
-  nmap('gi', vim.lsp.buf.implementation, opts)
-  nmap('gs', vim.lsp.buf.signature_help, opts)
-  nmap('K', vim.lsp.buf.hover, opts)
-  nmap('gh', require"lspsaga.provider".lsp_finder, opts)
-  nmap('[d', vim.lsp.diagnostic.goto_next, opts)
-  nmap(']d', vim.lsp.diagnostic.goto_prev, opts)
+  nmap('gd', vim.lsp.buf.definition, opts, 'Go to definition')
+  nmap('gD', vim.lsp.buf.declaration, opts, 'Go to declaration')
+  nmap('gr', vim.lsp.buf.references, opts, 'Go to references')
+  nmap('gi', vim.lsp.buf.implementation, opts, 'Go to implementation')
+  nmap('gs', vim.lsp.buf.signature_help, opts, 'Show signature help')
+  nmap('K', vim.lsp.buf.hover, opts, 'Hover doc')
+  nmap('gh', require"lspsaga.provider".lsp_finder, opts, 'Show definitions & references')
+  nmap(']d', vim.lsp.diagnostic.goto_next, opts, 'Prev diagnostic')
+  nmap('[d', vim.lsp.diagnostic.goto_prev, opts, 'Next diagnostic')
   -- Leader mappings
   set_group_name('<leader>l', 'LSP')
   nmap('<leader>lr', vim.lsp.buf.rename, opts, 'Rename')
@@ -42,83 +99,93 @@ local on_attach = function(client, bufnr)
     nmap('<space>lF', vim.lsp.buf.range_formatting, opts)
   end
 
-  -- Labels
-  protocol.SymbolKind = {
-    '   File';        -- File
-    '   Module';      -- Module
-    ' 凜 Namespace';   -- Namespace
-    '   Package';     -- Package
-    '   Class';       -- Class
-    '   Method';      -- Method
-    '   Property';    -- Property
-    '   Field';       -- Field
-    '   Constructor'; -- Constructor
-    '   Enum';        -- Enum
-    ' 蘒 Interface';   -- Interface
-    '   Function';    -- Function
-    '[] Variable';    -- Variable
-    '   Constant';    -- Constant
-    '   Text';        -- Text
-    '   Value';       -- Value
-    '   Boolean';     -- Boolean
-    '   Array';       -- Array
-    '   Object';      -- Object
-    '   Key';         -- Key
-    ' ﳠ  Null';        -- Null
-    '   Enum member'; -- EnumMember
-    '   Struct';      -- Struct
-    '   Event';       -- Event
-    '   Operator';    -- Operator
-    '<> Typeparam';   -- TypeParameter
-  }
-  protocol.CompletionItemKind = {
-    '   Text';        -- Text
-    '   Method';      -- Method
-    '   Function';    -- Function
-    '   Constructor'; -- Constructor
-    '   Field';       -- Field
-    '[] Variable';    -- Variable
-    '   Class';       -- Class
-    ' 蘒 Interface';   -- Interface
-    '   Module';      -- Module
-    '   Property';    -- Property
-    ' 塞 Unit';        -- Unit
-    '   Value';       -- Value
-    ' 練 Enum';        -- Enum
-    '   Keyword';     -- Keyword
-    '   Snippet';     -- Snippet
-    '   Color';       -- Color
-    '   File';        -- File
-    '   Reference';   -- Reference
-    '   Folder';      -- Folder
-    '   Enum member'; -- EnumMember
-    '   Constant';    -- Constant
-    '   Struct';      -- Struct
-    '   Event';       -- Event
-    '   Operator';    -- Operator
-    '<> Typeparam';   -- TypeParameter
-  }
+  -- Format on save
 
 end
 
-local lspconfig = require'lspconfig'
+
+-- Diagnostics
+
+autocmd('ColorScheme * :lua require("vim.lsp.diagnostic")._define_default_signs_and_highlights()') -- So diagnostics have color
+local orig_set_signs = vim.lsp.diagnostic.set_signs
+local set_signs_limited = function(diagnostics,  bufnr, client_id, sign_ns, opts)
+  opts = opts or {}
+  opts.serverity_limit = "Warning"
+  orig_set_signs(diagnostics, bufnr, client_id, sign_ns, opts)
+end
+vim.lsp.diagnostic.set_signs = set_signs_limited
+do
+  local handler = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = false,
+  }
+)
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, method, result, client_id, bufnr, config)
+    handler(err, method, result, client_id, bufnr, config)
+    local diagnostics = vim.lsp.diagnostic.get(bufnr)
+    local loclist = {}
+      for _, d in ipairs(diagnostics) do
+        d.bufnr = bufnr
+        d.lnum = d.range.start.line + 1
+        d.col = d.range.start.character + 1
+        d.text = d.message
+        table.insert(loclist, d)
+      end
+    vim.lsp.util.set_loclist(loclist)
+  end
+end
+
 -- General LS - EFM
-lspconfig.efm.setup{on_attach = on_attach}
-
+local eslint = {
+  lintCommand = 'npx eslint -f unix --stdin --stdin-filename ${INPUT}',
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {'%f:%l:%c: %m'},
+  formatCommand = 'npx eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}',
+  formatStdin = true,
+}
+local prettier = {
+  formatCommand = "npx prettier --stdin-filepath ${INPUT}",
+  formatStdin = true,
+}
+lspconfig.efm.setup{
+  on_attach = on_attach,
+  filetypes = { "lua", "javascript", "typescriptreact", "typescript"},
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      javascript = {
+        prettier,
+      },
+      typescriptreact = {
+        prettier,
+      },
+      typescript = {
+        prettier,
+      },
+    }
+  }
+}
 -- Python
-lspconfig.pyright.setup{on_attach = on_attach}
-
+lspconfig.pyright.setup{
+  on_attach = on_attach,
+}
 -- Vim
 lspconfig.vimls.setup{on_attach = on_attach}
 
 -- C++
 lspconfig.ccls.setup{
   on_attach = on_attach,
-	root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git", ".ccls") or dirname
+  compilationDatabaseDirectory = "build";
+  root_dir = function (fname)
+    return util.root_pattern("compile_commands.json", "compile_flags.txt", ".git", ".ccls")(fname) or dirname(fname)
+  end
 }
 
 -- Typescript
-lspconfig.tsserver.setup{on_attach = on_attach}
+lspconfig.tsserver.setup{
+  on_attach = on_attach,
+}
 
 -- Julia
 lspconfig.julials.setup{
@@ -194,10 +261,13 @@ require'lspconfig'.sumneko_lua.setup {
         library = {
           [vim.fn.expand('$VIMRUNTIME/lua')] = true,
           [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          ['~/.config/nvim/lua'] = true,
+          [os.getenv('HOME')..'/.config/nvim/lua'] = true,
         },
       },
     },
   },
   on_attach = on_attach,
 }
+
+-- Ruby
+require'lspconfig'.solargraph.setup {on_attach = on_attach}

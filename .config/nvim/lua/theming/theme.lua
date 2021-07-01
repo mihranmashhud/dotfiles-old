@@ -1,3 +1,6 @@
+vim.g.tokyonight_transparent_background = 1
+vim.g.tokyonight_style = 'night'
+
 vim.api.nvim_exec([[
 colorscheme tokyonight
 highlight VertSplit ctermbg=None guibg=None
@@ -17,5 +20,3 @@ highlight GitGutterChangeInvisible ctermbg=None guibg=None
 highlight GitGutterDeleteInvisible ctermbg=None guibg=None
 ]], false)
 
-vim.g.tokyonight_style = 'night'
-vim.g.tokyonight_transparent_background = 1
