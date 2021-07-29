@@ -131,7 +131,6 @@ return require('packer').startup(function(use)
   -- Look & Feel
   use {
     'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua'
   }                               -- Indent lines
   use 'lambdalisue/nerdfont.vim'  -- Nerdfont handler for vim
   use 'kjwon15/vim-transparent'   -- Enable terminal transparency. ~ Remove if not needed

@@ -2,13 +2,16 @@ local map = {}
 
 map._leader_info = {}
 
-local wk = require'which-key'
+local ok, wk = pcall(require, 'which-key') -- prevent breaking if which key is not installed
+if not ok then wk = nil end
 
-wk.setup{
-  window = {
-    border = "single",
-  },
-}
+if wk then
+  wk.setup{
+    window = {
+      border = "single",
+    },
+  }
+end
 
 --- Greedy pattern matching on multiple patterns
 local function seqchoice(str, patternlist)
@@ -41,7 +44,9 @@ end
 
 --- Add which-key info for a keybind
 local function add_info(keys, name)
-  wk.register({ [keys] = { name } })
+  if wk then
+    wk.register({ [keys] = { name } })
+  end
 end
 
 map._bound_funcs = {}
@@ -158,7 +163,9 @@ end
 -- @tparam string keys The keys sequence (eg: `<leader>fe`)
 -- @tparam string name The group name (eg: `Editor`)
 function map.set_group_name(keys, group_name)
-  wk.register({ [keys] =  { name = group_name }})
+  if wk then
+    wk.register({ [keys] = { name = group_name }})
+  end
 end
 
 --- Helper functions

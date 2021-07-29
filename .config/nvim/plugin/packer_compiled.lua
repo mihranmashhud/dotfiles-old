@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors, error_msg = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -189,6 +186,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/mihranmashhud/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
@@ -335,16 +336,16 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType latex ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vimtex', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim'}, { ft = "latex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType svelte ++once lua require("packer.load")({'vim-svelte'}, { ft = "svelte" }, _G.packer_plugins)]]
-vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'vim-markdown-jekyll', 'vim-pandoc', 'vim-pandoc-syntax', 'latex-unicoder.vim'}, { ft = "pandoc" }, _G.packer_plugins)]]
-vim.cmd [[au FileType rmarkdown ++once lua require("packer.load")({'vim-markdown-jekyll', 'markdown-preview.nvim'}, { ft = "rmarkdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType rmarkdown ++once lua require("packer.load")({'markdown-preview.nvim', 'vim-markdown-jekyll'}, { ft = "rmarkdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType julia ++once lua require("packer.load")({'julia-vim'}, { ft = "julia" }, _G.packer_plugins)]]
-vim.cmd [[au FileType mkd ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim'}, { ft = "mkd" }, _G.packer_plugins)]]
-vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'vim-pencil', 'vim-lexical', 'vim-litecorrect', 'vim-markdown-jekyll', 'latex-unicoder.vim', 'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType cpp ++once lua require("packer.load")({'vim-headerguard'}, { ft = "cpp" }, _G.packer_plugins)]]
+vim.cmd [[au FileType mkd ++once lua require("packer.load")({'vim-table-mode', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim', 'vim-pencil'}, { ft = "mkd" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'vim-table-mode', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim', 'vim-pandoc', 'vim-markdown-jekyll', 'vim-pandoc-syntax', 'vim-pencil'}, { ft = "pandoc" }, _G.packer_plugins)]]
 vim.cmd [[au FileType c ++once lua require("packer.load")({'vim-headerguard'}, { ft = "c" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType latex ++once lua require("packer.load")({'vim-table-mode', 'vim-lexical', 'vim-litecorrect', 'vimtex', 'latex-unicoder.vim', 'vim-pencil'}, { ft = "latex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType svelte ++once lua require("packer.load")({'vim-svelte'}, { ft = "svelte" }, _G.packer_plugins)]]
+vim.cmd [[au FileType cpp ++once lua require("packer.load")({'vim-headerguard'}, { ft = "cpp" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-table-mode', 'vim-lexical', 'vim-litecorrect', 'latex-unicoder.vim', 'markdown-preview.nvim', 'vim-markdown-jekyll', 'vim-pencil'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
@@ -354,20 +355,17 @@ time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/p
 time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], true)
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]]
 time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vimtex/ftdetect/tex.vim]], false)
-time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], true)
-vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
-time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], false)
 time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]], true)
 vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]]
 time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/julia-vim/ftdetect/julia.vim]], false)
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], true)
+vim.cmd [[source /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]]
+time([[Sourcing ftdetect script at: /home/mihranmashhud/.local/share/nvim/site/pack/packer/opt/vim-pandoc/ftdetect/pandoc.vim]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
+end

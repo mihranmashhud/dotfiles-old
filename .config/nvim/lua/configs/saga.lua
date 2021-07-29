@@ -18,6 +18,5 @@ require('lspsaga').init_lsp_saga{
   finder_action_keys = {
     open = 'o', vsplit = 'v',split = 'h',quit = '<Esc>',scroll_down = '<C-f>', scroll_up = '<C-b>'
   },
-  border_style = 2,
   rename_prompt_prefix = '>',
 }
