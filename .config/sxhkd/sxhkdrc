@@ -10,9 +10,10 @@ Print; Print
 Print; g
   flameshot gui
 
-## Kazam screen recorde
-Print; k
-  kazam
+## Screen recorder
+Print; r
+  simplescreenrecorder
+
 
 ## Lock the screen
 alt + shift + x
