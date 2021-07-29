@@ -28,13 +28,13 @@ show() {
 }
 
 dunst_resume() {
-  notify-send "DUNST_COMMAND_RESUME"
+  dunstctl set-paused false
   sed -i '1s/.*/RUNNING/' $DUNST_STATE_FILE
   sed -i '2s/.*/NA/' $DUNST_STATE_FILE
 }
 
 dunst_pause() {
-  notify-send "DUNST_COMMAND_PAUSE"
+  dunstctl set-paused true
   sed -i '1s/.*/PAUSED/' $DUNST_STATE_FILE
   sed -i "2s/.*/$1/" $DUNST_STATE_FILE
 }
